@@ -31,6 +31,17 @@ public class Buque {
         this.estado = estado;
     }
     
+    public void ponerSiendoAtendido(){
+        this.estado = "SA";
+    }
+    
+    public void ponerEsperandoAtencion(){
+        this.estado = "EA";
+    }
+    
+    public void ponerEsperandoReanudacion(){
+        this.estado = "ER";
+    }
     public void calcularTiempoRemanente(){
         double aux = 0.5 + this.cargaActual / 10000;
         aux = Math.round(aux*100.0) /100.0;

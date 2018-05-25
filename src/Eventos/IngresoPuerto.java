@@ -18,18 +18,17 @@ public class IngresoPuerto {
         this.cargaActual = -1;
     }
     
-    public void generarCarga(double rnd){
-        this.rndContenido = rnd;
+    public double generarCarga(double rnd){
         if (this.rndContenido <= 0.33){
-            this.cargaActual = 15000.0;
-            return;
+            return 15000.0;
         }
         if(this.rndContenido <= 0.66){
-            this.cargaActual = 20000.0;
+            return 20000.0;
         }
         if(this.rndContenido <= 0.99){
-            this.cargaActual = 25000.0;
+            return 25000.0;
         }
+        return 0;
     }
 
     public double getRndContenido() {
