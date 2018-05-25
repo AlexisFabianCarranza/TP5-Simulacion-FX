@@ -16,7 +16,7 @@ public class VectorEstado {
     private double tiempoLLegadaBuque;
     private double proximaLllegada;
     private double rndCarga;
-    private int cargaBuque;
+    private double cargaBuque;
    
     //tanques costeros
     
@@ -139,7 +139,7 @@ public class VectorEstado {
     }*/
 
     public VectorEstado(double reloj, double rndLLegadaBuque, double tiempoLLegadaBuque, double proximaLllegada, 
-                        double rndCarga, int cargaBuque, 
+                        double rndCarga, double cargaBuque, 
                         double capacidadLibreT1, String estadoT1, double tiempoProximaInterrupcionT1, double tiempoDescargaT1, 
                         double capacidadLibreT2, String estadoT2, double tiempoProximaInterrupcionT2, double tiempoDescargaT2, 
                         double capacidadLibreT3, String estadoT3, double tiempoProximaInterrupcionT3, double tiempoDescargaT3, 
@@ -223,7 +223,7 @@ public class VectorEstado {
         return rndCarga;
     }
 
-    public int getCargaBuque() {
+    public double getCargaBuque() {
         return cargaBuque;
     }
 

@@ -113,6 +113,11 @@ public class GestorSimulacion {
     public void actualizarVectorEstadoActual(){
         //LA idea es que en este metodo se actualize todos los atributos del vector estado, 
         //con los valores actuales de los objetos
+        Buque b1 = this.tanque1.getBuqueEnAtencion();
+        Buque b2 = this.tanque2.getBuqueEnAtencion();
+        Buque b3 = this.tanque3.getBuqueEnAtencion();
+        Buque b4 = this.tanque4.getBuqueEnAtencion();
+        Buque b5 = this.tanque5.getBuqueEnAtencion();
         this.vectorEstadoActual = new VectorEstado(this.reloj, this.llegadaBuque.getRndLLegadaBuque(), 
                this.llegadaBuque.getTiempoLLegadaBuque(),this.llegadaBuque.getProximaLllegada(),
                this.ingresoPuerto.getRndContenido() , this.ingresoPuerto.getCargaActual(), 
@@ -121,6 +126,12 @@ public class GestorSimulacion {
                this.tanque3.getCapacidadLibre(), this.tanque3.getEstado(), this.tanque3.getProximaInterrupcion(), this.tanque1.getFinDescarga(),
                this.tanque4.getCapacidadLibre(), this.tanque4.getEstado(), this.tanque4.getProximaInterrupcion(), this.tanque1.getFinDescarga(),
                this.tanque5.getCapacidadLibre(), this.tanque5.getEstado(), this.tanque5.getProximaInterrupcion(), this.tanque1.getFinDescarga(),
+               b1.getCargaActual() , b1.getEstado(), b1.getTiempoRemanenteCarga(), "tanque 1",
+               b2.getCargaActual() , b2.getEstado(), b2.getTiempoRemanenteCarga(), "tanque 2",
+               b3.getCargaActual() , b3.getEstado(), b3.getTiempoRemanenteCarga(), "tanque 3",
+               b4.getCargaActual() , b4.getEstado(), b4.getTiempoRemanenteCarga(), "tanque 4",
+               b5.getCargaActual() , b5.getEstado(), b5.getTiempoRemanenteCarga(), "tanque 5",
+               this.cola
         );
     }
     
