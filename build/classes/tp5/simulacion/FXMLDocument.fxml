@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="1381.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp5.simulacion.FXMLDocumentController">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <TableView layoutX="14.0" layoutY="62.0" prefHeight="319.0" prefWidth="1360.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Reloj(hora)" />
+            <TableColumn prefWidth="263.0" text="Llegada Buque">
+               <columns>
+                  <TableColumn prefWidth="36.0" text="RND" />
+                  <TableColumn prefWidth="97.99996948242188" text="Tiempo Llegada" />
+                  <TableColumn prefWidth="88.0" text="Prox. Llegada" />
+               </columns>
+            </TableColumn>
+            <TableColumn prefWidth="113.99996948242188" text="Fin Carga ">
+               <columns>
+                  <TableColumn prefWidth="35.999969482421875" text="RND" />
+                  <TableColumn prefWidth="78.0" text="CargaBuque" />
+                  <TableColumn prefWidth="86.0" text="Tiempo Carga" />
+                  <TableColumn prefWidth="41.0" text="Fin T1" />
+                  <TableColumn prefWidth="39.0" text="Fin T2" />
+                  <TableColumn prefWidth="40.0" text="Fin T3" />
+                  <TableColumn prefWidth="41.0" text="Fin T4" />
+                  <TableColumn prefWidth="40.0" text="Fin T5" />
+               </columns>
+            </TableColumn>
+            <TableColumn prefWidth="114.0" text="Fin Descarga">
+               <columns>
+                  <TableColumn prefWidth="27.0" text="FD1" />
+                  <TableColumn prefWidth="29.0" text="FD2" />
+                  <TableColumn prefWidth="29.0" text="FD3" />
+                  <TableColumn minWidth="0.0" prefWidth="26.0" text="FD4" />
+                  <TableColumn prefWidth="27.0" text="FD5" />
+               </columns>
+            </TableColumn>
+            <TableColumn prefWidth="411.0" text="Tanque(n)">
+               <columns>
+                  <TableColumn prefWidth="207.0" text="1">
+                     <columns>
+                        <TableColumn prefWidth="45.0" text="Estado" />
+                        <TableColumn prefWidth="45.0" text="Carga" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="207.0" text="2">
+                     <columns>
+                        <TableColumn prefWidth="45.0" text="Estado" />
+                        <TableColumn prefWidth="45.0" text="Carga" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="207.0" text="3">
+                     <columns>
+                        <TableColumn prefWidth="45.0" text="Estado" />
+                        <TableColumn prefWidth="45.0" text="Carga" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="207.0" text="4">
+                     <columns>
+                        <TableColumn prefWidth="45.0" text="Estado" />
+                        <TableColumn prefWidth="45.0" text="Carga" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="207.0" text="5">
+                     <columns>
+                        <TableColumn prefWidth="45.0" text="Estado" />
+                        <TableColumn prefWidth="45.0" text="Carga" />
+                     </columns>
+                  </TableColumn>
+               </columns></TableColumn>
+            <TableColumn prefWidth="34.0" text="Cola " />
+        </columns>
+      </TableView>
+    </children>
+</AnchorPane>
