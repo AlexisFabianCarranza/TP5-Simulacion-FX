@@ -57,6 +57,7 @@ public class GestorSimulacion {
         this.reloj = 0;
         this.cola = 0;
         this.llegadaBuque = new LlegadaBuque();
+        this.llegadaBuque.setProximaLllegada(0);//Condicion inicial;
         this.ingresoPuerto = new IngresoPuerto();
         //Inicializo los tanques con los valores por defecto del problema
         this.tanque1 = new Tanque(70000,"L");
@@ -113,21 +114,22 @@ public class GestorSimulacion {
             this.vectorEstadoActual.setCola(this.cola);
          }
         else {
-            Buque buqueNuevo = new Buque();
             this.simularIngresoPuerto();
+            Buque buqueNuevo = new Buque();
             buqueNuevo.ponerSiendoAtendido();
             buqueNuevo.setCargaActual(this.ingresoPuerto.getCargaActual());
+            double finCarga = this.generarFinCarga(buqueNuevo.getCargaActual());
+            
             //coloca el buque en la casilla del tanque, osea tanque1 con buque1 ...
             int index = this.getIndexTanque(tanqueLibre);
             this.buques[index] = buqueNuevo;
-            double finCarga = this.generarFinCarga(buqueNuevo.getCargaActual());
             tanqueLibre.setFinCarga(finCarga);
             tanqueLibre.setEstado("C");
             tanqueLibre.setBuqueEnAtencion(buqueNuevo);
             
             if(tanqueLibre.getCapacidadLibre() < tanqueLibre.getBuqueEnAtencion().getCargaActual()){
                 //Forma de calcular la descarga, 70000/4000 = 17.5
-                tanqueLibre.setFinDescarga(this.reloj + 17.5);
+                tanqueLibre.generarProximaInterrupcion(this.reloj);
             }
         }
         this.actualizarVectorEstadoActual();
@@ -177,6 +179,13 @@ public class GestorSimulacion {
         }
         return null;
     }
+    
+    /*public Object buscarProximoEvento(){
+        //Metodo que deberia devolver el proximo evento , Object porque puede ser un Tanque o una Llegada,
+        //Dentro del tanque esta la hora fin carga y hora fin descarga
+        Object o;
+        return o;
+    }*/
     public ObservableList<VectorEstadoView> simular()
     {
         //Seteo el vector estado Actual en la posicion 0 del reloj
