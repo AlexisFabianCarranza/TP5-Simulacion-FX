@@ -62,8 +62,11 @@ public class GestorSimulacion {
         this.tanque1 = new Tanque(70000,"L");
         this.tanque2 = new Tanque(70000,"L");
         this.tanque3 = new Tanque(0,"D");
+        this.tanque3.setFinDescarga(8);
         this.tanque4 = new Tanque(45000, "C");
+        this.tanque4.setFinCarga(12);
         this.tanque5 = new Tanque(25000, "C");
+        this.tanque5.setFinCarga(3.5);
         //ArrayList de tanque para generar el evento que sigue
         this.tanques = new Tanque[5];
         this.tanques[0] = tanque1;
@@ -79,18 +82,29 @@ public class GestorSimulacion {
         this.reloj = this.vectorEstadoActual.getReloj() + finCarga;
         
     }
-    
-    private void simularLlegadaBuque() {
-        //Seteo del reloj
-        this.reloj = this.vectorEstadoActual.getReloj() + this.vectorEstadoActual.getProximaLllegada();
-        
-        //EVENTO LLEGADA DEL Proximo buque BUQUE
+    //Metodo separado, ya que en todos los casos son iguales
+    private void simularLlegada(){
         double rndLlegada = this.rnd.nextDouble();
         double tiempoLlegada = this.llegadaBuque.generarTiempoLlegada(rndLlegada);
         double proximaLlegada = this.reloj + tiempoLlegada;
         this.llegadaBuque.setProximaLllegada(proximaLlegada);
         this.llegadaBuque.setRndLLegadaBuque(rndLlegada);
         this.llegadaBuque.setTiempoLLegadaBuque(tiempoLlegada);
+    }
+    //Metodo separado, ya que en todos los casos son iguales
+    private void simularIngresoPuerto(){
+        double rndContenidoBuque = this.rnd.nextDouble();
+        double cargaBuque = this.ingresoPuerto.generarCarga(rndContenidoBuque);
+        this.ingresoPuerto.setCargaActual(cargaBuque);
+        this.ingresoPuerto.setRndContenido(rndContenidoBuque);
+    }
+    
+    private void simularEventoLlegadaBuque() {
+        //Seteo del reloj
+        this.reloj = this.vectorEstadoActual.getReloj() + this.vectorEstadoActual.getProximaLllegada();
+        
+        //EVENTO LLEGADA DEL Proximo buque BUQUE
+        this.simularLlegada();
         
         //EVENTO Ingreso Buque ; PRimero me fijo si hay tanque libre
         Tanque tanqueLibre = this.getTanqueLibre();
@@ -100,12 +114,10 @@ public class GestorSimulacion {
          }
         else {
             Buque buqueNuevo = new Buque();
-            double rndContenidoBuque = this.rnd.nextDouble();
-            double cargaBuque = this.ingresoPuerto.generarCarga(rndContenidoBuque);
-            this.ingresoPuerto.setCargaActual(cargaBuque);
-            this.ingresoPuerto.setRndContenido(rndContenidoBuque);
+            this.simularIngresoPuerto();
             buqueNuevo.ponerSiendoAtendido();
-            buqueNuevo.setCargaActual(cargaBuque);
+            buqueNuevo.setCargaActual(this.ingresoPuerto.getCargaActual());
+            //coloca el buque en la casilla del tanque, osea tanque1 con buque1 ...
             int index = this.getIndexTanque(tanqueLibre);
             this.buques[index] = buqueNuevo;
             double finCarga = this.generarFinCarga(buqueNuevo.getCargaActual());
@@ -113,10 +125,12 @@ public class GestorSimulacion {
             tanqueLibre.setEstado("C");
             tanqueLibre.setBuqueEnAtencion(buqueNuevo);
             
-            //Si remanente de carga es distinto de menos 1, es porque se lleno el tanque y hay que generar una descarga
-            //para ese tanque
+            if(tanqueLibre.getCapacidadLibre() < tanqueLibre.getBuqueEnAtencion().getCargaActual()){
+                //Forma de calcular la descarga, 70000/4000 = 17.5
+                tanqueLibre.setFinDescarga(this.reloj + 17.5);
+            }
         }
-        
+        this.actualizarVectorEstadoActual();
     }
     
     public void actualizarVectorEstadoActual(){
@@ -144,6 +158,25 @@ public class GestorSimulacion {
         );
     }
     
+    public String proximoEvento(){
+        //Si este metodo funciona bien, deberia seleciionar el evento proximo
+        double minimaHora = 0;
+        String evento;
+        for(int i = 0 ; i < this.tanques.length ; i++){
+            if(minimaHora < this.tanques[i].getFinCarga()){
+                minimaHora = this.tanques[i].getFinCarga();
+                evento = "FinCarga";
+            }
+            if(minimaHora < this.tanques[i].getFinDescarga()){
+                minimaHora = this.tanques[i].getFinDescarga();
+                evento = "FinDescarga";
+            }
+        }
+        if(this.llegadaBuque.getProximaLllegada() < minimaHora){
+            return "LlegadaBuque";
+        }
+        return null;
+    }
     public ObservableList<VectorEstadoView> simular()
     {
         //Seteo el vector estado Actual en la posicion 0 del reloj

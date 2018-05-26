@@ -40,9 +40,6 @@ public class Tanque {
         this.tiempoInterrupcion = -1;
     }
     
-    public void generarCarga(double rnd){
-    
-    }
     
     public void ponerCargando(){
         this.estado = "C";
