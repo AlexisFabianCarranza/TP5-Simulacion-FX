@@ -111,7 +111,6 @@ public class GestorSimulacion {
         Tanque tanqueLibre = this.getTanqueLibre();
         if (tanqueLibre == null) {
             this.cola += 1;
-            this.vectorEstadoActual.setCola(this.cola);
          }
         else {
             this.simularIngresoPuerto();
@@ -180,12 +179,7 @@ public class GestorSimulacion {
         return null;
     }
     
-    /*public Object buscarProximoEvento(){
-        //Metodo que deberia devolver el proximo evento , Object porque puede ser un Tanque o una Llegada,
-        //Dentro del tanque esta la hora fin carga y hora fin descarga
-        Object o;
-        return o;
-    }*/
+    
     public ObservableList<VectorEstadoView> simular()
     {
         //Seteo el vector estado Actual en la posicion 0 del reloj
