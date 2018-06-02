@@ -162,7 +162,7 @@ public class GestorSimulacion {
     private double generarFinCarga(Tanque tanqueLibre, Buque buqueNuevo){
         //Metodo que genera el fin de carga dependiendo si el tanque tiene espacio para todo
         double carga;
-        if(tanqueLibre.getCapacidadLibre() < tanqueLibre.getBuqueEnAtencion().getCargaActual()){
+        if(tanqueLibre.getCapacidadLibre() < buqueNuevo.getCargaActual()){
             carga = tanqueLibre.getCapacidadLibre();
         }
         else{
