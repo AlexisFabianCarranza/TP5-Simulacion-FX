@@ -13,6 +13,7 @@ public class Tanque {
     private String estado; // Los estados pueden ser 'L' 'C' 'D'
     private double capacidadLibre;
     
+    private double inicioCarga;
     private double finCarga;
     private double finDescarga;
     private double tiempoInterrupcion;
@@ -125,6 +126,14 @@ public class Tanque {
 
     public void setBuqueEnAtencion(Buque buqueEnAtencion) {
         this.buqueEnAtencion = buqueEnAtencion;
+    }
+
+    public double getInicioCarga() {
+        return inicioCarga;
+    }
+
+    public void setInicioCarga(double inicioCarga) {
+        this.inicioCarga = inicioCarga;
     }
 
     
