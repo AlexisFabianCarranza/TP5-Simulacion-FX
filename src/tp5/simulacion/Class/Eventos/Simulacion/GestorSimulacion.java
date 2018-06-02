@@ -130,7 +130,7 @@ public class GestorSimulacion {
                 Buque buqueNuevo = new Buque();
                 this.simularIngresoPuerto();
                 buqueNuevo.setCargaActual(this.ingresoPuerto.getCargaActual());
-                double finCarga = this.generarFinCarga(buqueNuevo.getCargaActual());
+                double finCarga = this.generarFinCarga(tanque, buqueNuevo);
                 int index = this.getIndexTanque(tanque);
                 this.buques[index] = buqueNuevo;
                 tanque.setFinCarga(finCarga);
@@ -231,8 +231,11 @@ public class GestorSimulacion {
     
     public String proximoEvento(){
         //Si este metodo funciona bien, deberia seleciionar el evento proximo
-        double minimaHora = 0;
+        double minimaHora = this.reloj;
         String evento;
+        if(this.llegadaBuque.getProximaLllegada() < minimaHora){
+            return "LlegadaBuque";
+        }
         for(int i = 0 ; i < this.tanques.length ; i++){
             if(minimaHora < this.tanques[i].getFinCarga()){
                 minimaHora = this.tanques[i].getFinCarga();
@@ -243,9 +246,7 @@ public class GestorSimulacion {
                 evento = "FinDescarga";
             }
         }
-        if(this.llegadaBuque.getProximaLllegada() < minimaHora){
-            return "LlegadaBuque";
-        }
+        
         return null;
     }
     

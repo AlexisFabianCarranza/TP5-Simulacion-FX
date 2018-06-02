@@ -1,126 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1405.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp5.simulacion.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="902.0" prefWidth="1934.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp5.simulacion.FXMLDocumentController">
     <children>
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TableView layoutX="-3.0" prefHeight="364.0" prefWidth="1465.0">
-        <columns>
-          <TableColumn prefWidth="35.0" text="Reloj" />
-            <TableColumn prefWidth="125.0" text="Llegada Buque">
-               <columns>
-                  <TableColumn prefWidth="32.0" text="RND" />
-                  <TableColumn prefWidth="52.0" text="Tiempo" />
-                  <TableColumn prefWidth="37.0" text="Prox." />
-               </columns>
-            </TableColumn>
-            <TableColumn prefWidth="92.99996948242188" text="Ingreso Puerto">
-               <columns>
-                  <TableColumn prefWidth="32.999969482421875" text="RND" />
-                  <TableColumn prefWidth="39.000030517578125" text="Carga" />
-               </columns>
-            </TableColumn>
-            <TableColumn prefWidth="382.0" text="Carga Tanque(n)">
-               <columns>
-                  <TableColumn prefWidth="23.000030517578125" text="1">
+      <ScrollPane layoutX="24.0" layoutY="241.0">
+         <content>
+            <TableView prefHeight="508.0" prefWidth="1884.0">
+              <columns>
+                <TableColumn fx:id="relojColumn" prefWidth="74.0" text="Reloj" />
+                  <TableColumn editable="false" prefWidth="-1.0" text="Llegada Buque">
                      <columns>
-                        <TableColumn prefWidth="35.0" text="Inicio" />
-                        <TableColumn prefWidth="29.0" text="Fin" />
-                     </columns></TableColumn>
-                  <TableColumn prefWidth="23.000030517578125" text="2">
-                     <columns>
-                        <TableColumn prefWidth="35.0" text="Inicio" />
-                        <TableColumn prefWidth="29.0" text="Fin" />
+                        <TableColumn fx:id="rndLlegadaColumn" prefWidth="32.0" text="RND" />
+                        <TableColumn fx:id="tiempoLlegadaColumn" prefWidth="46.000030517578125" text="Tiempo" />
+                        <TableColumn fx:id="proximaLlegadaColumn" prefWidth="41.999969482421875" text="Prox." />
                      </columns>
                   </TableColumn>
-                  <TableColumn prefWidth="23.000030517578125" text="3">
+                  <TableColumn minWidth="0.0" prefWidth="31.0" text="Ingreso Puerto">
                      <columns>
-                        <TableColumn prefWidth="35.0" text="Inicio" />
-                        <TableColumn prefWidth="29.0" text="Fin" />
+                        <TableColumn fx:id="rndCargaColumn" prefWidth="32.999969482421875" text="RND" />
+                        <TableColumn fx:id="cargaColumn" prefWidth="39.000030517578125" text="Carga" />
                      </columns>
                   </TableColumn>
-                  <TableColumn prefWidth="23.000030517578125" text="4">
+                  <TableColumn prefWidth="258.0" text="Carga Tanque(n)">
                      <columns>
-                        <TableColumn prefWidth="35.0" text="Inicio" />
-                        <TableColumn prefWidth="29.0" text="Fin" />
+                        <TableColumn prefWidth="23.000030517578125" text="1">
+                           <columns>
+                              <TableColumn fx:id="inicioCargaT1Column" prefWidth="40.0" text="Inicio" />
+                              <TableColumn fx:id="finCargaT1Column" minWidth="0.0" prefWidth="24.0" text="Fin" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="23.000030517578125" text="2">
+                           <columns>
+                              <TableColumn fx:id="inicioCargaT2Column" prefWidth="35.0" text="Inicio" />
+                              <TableColumn fx:id="finCargaT2Column" prefWidth="29.0" text="Fin" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="23.000030517578125" text="3">
+                           <columns>
+                              <TableColumn fx:id="inicioCargaT3Column" prefWidth="35.0" text="Inicio" />
+                              <TableColumn fx:id="finCargaT3Column" prefWidth="29.0" text="Fin" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="23.000030517578125" text="4">
+                           <columns>
+                              <TableColumn fx:id="inicioCargaT4Column" prefWidth="35.0" text="Inicio" />
+                              <TableColumn fx:id="finCargaT4Column" prefWidth="29.0" text="Fin" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="23.000030517578125" text="5">
+                           <columns>
+                              <TableColumn fx:id="inicioCargaT5Column" prefWidth="35.0" text="Inicio" />
+                              <TableColumn fx:id="finCargaT5Column" prefWidth="29.0" text="Fin" />
+                           </columns>
+                        </TableColumn>
                      </columns>
                   </TableColumn>
-                  <TableColumn prefWidth="23.000030517578125" text="5">
+                  <TableColumn prefWidth="114.0" text="Fin Descarga">
                      <columns>
-                        <TableColumn prefWidth="35.0" text="Inicio" />
-                        <TableColumn prefWidth="29.0" text="Fin" />
+                        <TableColumn fx:id="finDescargaT1Column" prefWidth="27.0" text="1" />
+                        <TableColumn fx:id="finDescargaT2Column" prefWidth="29.0" text="2" />
+                        <TableColumn fx:id="finDescargaT3Column" prefWidth="29.0" text="3" />
+                        <TableColumn fx:id="finDescargaT4Column" minWidth="0.0" prefWidth="26.0" text="4" />
+                        <TableColumn fx:id="finDescargaT5Column" prefWidth="27.0" text="5" />
                      </columns>
                   </TableColumn>
-               </columns>
-            </TableColumn>
-            <TableColumn prefWidth="114.0" text="Fin Descarga">
-               <columns>
-                  <TableColumn prefWidth="27.0" text="1" />
-                  <TableColumn prefWidth="29.0" text="2" />
-                  <TableColumn prefWidth="29.0" text="3" />
-                  <TableColumn minWidth="0.0" prefWidth="26.0" text="4" />
-                  <TableColumn prefWidth="27.0" text="5" />
-               </columns>
-            </TableColumn>
-            <TableColumn prefWidth="36.0" text="Cola " />
-            <TableColumn prefWidth="543.0" text="Tanque(n)">
-               <columns>
-                  <TableColumn prefWidth="181.0" text="1">
+                  <TableColumn fx:id="colaColumn" prefWidth="68.0" text="Cola " />
+                  <TableColumn prefWidth="408.0" text="Tanque(n)">
                      <columns>
-                        <TableColumn prefWidth="26.0" text="Est." />
-                        <TableColumn prefWidth="62.0" text="Cap. Libre" />
+                        <TableColumn prefWidth="93.0" text="1">
+                           <columns>
+                              <TableColumn fx:id="estadoT1Column" prefWidth="48.0" text="Est." />
+                              <TableColumn fx:id="capacidadLibreT1Column" minWidth="7.0" prefWidth="40.0" text="Cap. Libre" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="83.0" text="2">
+                           <columns>
+                              <TableColumn fx:id="estadoT2Column" prefWidth="26.0" text="Est." />
+                              <TableColumn fx:id="capacidadLibreT2Column" prefWidth="62.0" text="Cap. Libre" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="181.0" text="3">
+                           <columns>
+                              <TableColumn fx:id="estadoT3Column" prefWidth="26.0" text="Est." />
+                              <TableColumn fx:id="capacidadLibreT3Column" prefWidth="62.0" text="Cap. Libre" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="181.0" text="4">
+                           <columns>
+                              <TableColumn fx:id="estadoT4Column" prefWidth="26.0" text="Est." />
+                              <TableColumn fx:id="capacidadLibreT4Column" prefWidth="62.0" text="Cap. Libre" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="88.0" text="5">
+                           <columns>
+                              <TableColumn fx:id="estadoT5Column" prefWidth="26.0" text="Est." />
+                              <TableColumn fx:id="capacidadLibreT5Column" prefWidth="62.0" text="Cap. Libre" />
+                           </columns>
+                        </TableColumn>
                      </columns>
                   </TableColumn>
-                  <TableColumn prefWidth="181.0" text="2">
+                  <TableColumn prefWidth="170.0" text="Buques">
                      <columns>
-                        <TableColumn prefWidth="26.0" text="Est." />
-                        <TableColumn prefWidth="62.0" text="Cap. Libre" />
+                        <TableColumn prefWidth="165.0" text="1">
+                           <columns>
+                              <TableColumn prefWidth="33.0" text="Est." />
+                              <TableColumn prefWidth="78.0" text="Carga Actual" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="111.0" text="2">
+                           <columns>
+                              <TableColumn prefWidth="64.0" text="Est." />
+                              <TableColumn prefWidth="47.0" text="Carga Actual" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="111.0" text="3">
+                           <columns>
+                              <TableColumn prefWidth="64.0" text="Est." />
+                              <TableColumn prefWidth="47.0" text="Carga Actual" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="111.0" text="4">
+                           <columns>
+                              <TableColumn prefWidth="64.0" text="Est." />
+                              <TableColumn prefWidth="47.0" text="Carga Actual" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn prefWidth="111.0" text="5">
+                           <columns>
+                              <TableColumn prefWidth="64.0" text="Est." />
+                              <TableColumn prefWidth="47.0" text="Carga Actual" />
+                           </columns>
+                        </TableColumn>
                      </columns>
                   </TableColumn>
-                  <TableColumn prefWidth="181.0" text="3">
-                     <columns>
-                        <TableColumn prefWidth="26.0" text="Est." />
-                        <TableColumn prefWidth="62.0" text="Cap. Libre" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="181.0" text="4">
-                     <columns>
-                        <TableColumn prefWidth="26.0" text="Est." />
-                        <TableColumn prefWidth="62.0" text="Cap. Libre" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="181.0" text="5">
-                     <columns>
-                        <TableColumn prefWidth="26.0" text="Est." />
-                        <TableColumn prefWidth="62.0" text="Cap. Libre" />
-                     </columns>
-                  </TableColumn>
-               </columns></TableColumn>
-            <TableColumn prefWidth="141.0" text="Buque">
-               <columns>
-                  <TableColumn prefWidth="165.0" text="1">
-                     <columns>
-                        <TableColumn prefWidth="33.0" text="Est." />
-                        <TableColumn prefWidth="78.0" text="Carga Actual" />
-                     </columns>
-                  </TableColumn>
-               </columns>
-            </TableColumn>
-            <TableColumn prefWidth="141.0" text="Buque">
-               <columns>
-                  <TableColumn prefWidth="165.0" text="2">
-                     <columns>
-                        <TableColumn prefWidth="33.0" text="Est." />
-                        <TableColumn prefWidth="78.0" text="Carga Actual" />
-                     </columns>
-                  </TableColumn>
-               </columns>
-            </TableColumn>
-        </columns>
-      </TableView>
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <TextField fx:id="txtHorasSimulacion" layoutX="584.0" layoutY="72.0" text="1000" />
+      <Label layoutX="368.0" layoutY="77.0" text="Cantidad de horas a simular:" />
+      <Button fx:id="btnSimular" layoutX="1158.0" layoutY="72.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="157.0" text="Simular" />
+      <Label layoutX="366.0" layoutY="112.0" text="Mostrar filas " />
+      <Label layoutX="368.0" layoutY="147.0" text="Desde hora:" />
+      <Label layoutX="617.0" layoutY="147.0" text="Hasta hora:" />
+      <TextField fx:id="txtHoraDesde" layoutX="463.0" layoutY="142.0" prefHeight="26.0" prefWidth="112.0" />
+      <TextField fx:id="txtHoraHasta" layoutX="703.0" layoutY="142.0" prefHeight="26.0" prefWidth="112.0" />
     </children>
 </AnchorPane>
