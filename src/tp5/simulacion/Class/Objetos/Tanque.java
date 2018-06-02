@@ -41,9 +41,6 @@ public class Tanque {
         this.finDescarga = -1;
         this.tiempoInterrupcion = -1;
     }
-    public void generarProximaInterrupcion(double reloj) {
-        this.tiempoInterrupcion = reloj + this.capacidadLibre / 10000 + 0.5;
-    }
     
     public void ponerCargando(){
         this.estado = "C";

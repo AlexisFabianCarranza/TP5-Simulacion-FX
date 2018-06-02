@@ -108,6 +108,19 @@ public class GestorSimulacion {
         //Nico
     }
     
+    private double generarFinCarga(Tanque tanqueLibre, Buque buqueNuevo){
+        //Metodo que genera el fin de carga dependiendo si el tanque tiene espacio para todo
+        double carga;
+        if(tanqueLibre.getCapacidadLibre() < tanqueLibre.getBuqueEnAtencion().getCargaActual()){
+            carga = tanqueLibre.getCapacidadLibre();
+        }
+        else{
+            carga = buqueNuevo.getCargaActual();
+        }
+        double FinCarga = 0.5 + carga / 10000.0;
+        return Math.round(FinCarga * 100.0) / 100.0;
+    }
+    
     private void simularEventoLlegadaBuque() {
         //Seteo del reloj
         this.reloj = this.vectorEstadoActual.getProximaLllegada();
@@ -125,20 +138,17 @@ public class GestorSimulacion {
             Buque buqueNuevo = new Buque();
             buqueNuevo.ponerSiendoAtendido();
             buqueNuevo.setCargaActual(this.ingresoPuerto.getCargaActual());
-            double finCarga = this.generarFinCarga(buqueNuevo.getCargaActual());
             
+            double finCarga = this.generarFinCarga(tanqueLibre, buqueNuevo);
             //coloca el buque en la casilla del tanque, osea tanque1 con buque1 ...
             int index = this.getIndexTanque(tanqueLibre);
             this.buques[index] = buqueNuevo;
+            tanqueLibre.setInicioCarga(this.reloj);
             tanqueLibre.setFinCarga(finCarga);
             tanqueLibre.setEstado("C");
             tanqueLibre.setBuqueEnAtencion(buqueNuevo);
             
-            if(tanqueLibre.getCapacidadLibre() < tanqueLibre.getBuqueEnAtencion().getCargaActual()){
-                //Forma de calcular la descarga, 70000/4000 = 17.5
-                tanqueLibre.generarProximaInterrupcion(this.reloj);
-               
-            }
+            
         }
        //this.actualizarVectorEstadoActual();
     }
@@ -209,14 +219,6 @@ public class GestorSimulacion {
         
         return this.vectoresEstados;
     }
-    
-    public double generarFinCarga(double cargaBuque){
-        double aux = 0.5 + cargaBuque / 10000.0;
-        aux = Math.round(aux * 100.0) / 100.0;
-        return aux;
-    }
-    
-    
     
     private Tanque getTanqueLibre(){
         for (Object tanque: this.tanques){
