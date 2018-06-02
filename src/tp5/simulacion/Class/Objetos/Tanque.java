@@ -51,6 +51,11 @@ public class Tanque {
     
     public void ponerLibre(){
         this.estado = "L";
+        this.rndFinCarga = -1;
+        this.finCarga = -1;
+        this.finDescarga = -1;
+        this.tiempoInterrupcion = -1;
+        this.buqueEnAtencion = null;
     }
     
     public void ponerDescargando(){
