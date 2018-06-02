@@ -15,12 +15,11 @@ public class Buque {
     private double rndContenido;
     private double cargaActual;
     private String estado; // Los estados pueden ser solo 'SA' 'ER' 'EA'
-    private double tiempoRemanenteCarga;
+//    private double tiempoRemanenteCarga;
 
     public Buque(double cargaActual, String estado, double tiempoRemanenteCarga) {
         this.cargaActual = cargaActual;
         this.estado = estado;
-        this.tiempoRemanenteCarga = tiempoRemanenteCarga;
     }
 
     public Buque() {
@@ -42,11 +41,11 @@ public class Buque {
     public void ponerEsperandoReanudacion(){
         this.estado = "ER";
     }
-    public void calcularTiempoRemanente(){
-        double aux = 0.5 + this.cargaActual / 10000;
-        aux = Math.round(aux*100.0) /100.0;
-        this.tiempoRemanenteCarga = aux;
-    }
+//    public void calcularTiempoRemanente(){
+//        double aux = 0.5 + this.cargaActual / 10000;
+//        aux = Math.round(aux*100.0) /100.0;
+//        this.tiempoRemanenteCarga = aux;
+//    }
 
     public double getCargaActual() {
         return cargaActual;
@@ -56,10 +55,6 @@ public class Buque {
         return estado;
     }
 
-    public double getTiempoRemanenteCarga() {
-        return tiempoRemanenteCarga;
-    }
-
     public void setCargaActual(double cargaActual) {
         this.cargaActual = cargaActual;
     }
@@ -67,10 +62,5 @@ public class Buque {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    public void setTiempoRemanenteCarga(double tiempoRemanenteCarga) {
-        this.tiempoRemanenteCarga = tiempoRemanenteCarga;
-    }
-    
     
 }

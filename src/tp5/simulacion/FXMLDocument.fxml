@@ -26,11 +26,35 @@
             </TableColumn>
             <TableColumn prefWidth="382.0" text="Carga Tanque(n)">
                <columns>
-                  <TableColumn prefWidth="23.000030517578125" text="1" />
-                  <TableColumn prefWidth="31.0" text="2" />
-                  <TableColumn minWidth="9.000030517578125" prefWidth="28.000030517578125" text="3" />
-                  <TableColumn prefWidth="35.0" text="4" />
-                  <TableColumn prefWidth="31.0" text="5" />
+                  <TableColumn prefWidth="23.000030517578125" text="1">
+                     <columns>
+                        <TableColumn prefWidth="35.0" text="Inicio" />
+                        <TableColumn prefWidth="29.0" text="Fin" />
+                     </columns></TableColumn>
+                  <TableColumn prefWidth="23.000030517578125" text="2">
+                     <columns>
+                        <TableColumn prefWidth="35.0" text="Inicio" />
+                        <TableColumn prefWidth="29.0" text="Fin" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="23.000030517578125" text="3">
+                     <columns>
+                        <TableColumn prefWidth="35.0" text="Inicio" />
+                        <TableColumn prefWidth="29.0" text="Fin" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="23.000030517578125" text="4">
+                     <columns>
+                        <TableColumn prefWidth="35.0" text="Inicio" />
+                        <TableColumn prefWidth="29.0" text="Fin" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="23.000030517578125" text="5">
+                     <columns>
+                        <TableColumn prefWidth="35.0" text="Inicio" />
+                        <TableColumn prefWidth="29.0" text="Fin" />
+                     </columns>
+                  </TableColumn>
                </columns>
             </TableColumn>
             <TableColumn prefWidth="114.0" text="Fin Descarga">
@@ -40,15 +64,6 @@
                   <TableColumn prefWidth="29.0" text="3" />
                   <TableColumn minWidth="0.0" prefWidth="26.0" text="4" />
                   <TableColumn prefWidth="27.0" text="5" />
-               </columns>
-            </TableColumn>
-            <TableColumn prefWidth="322.0" text="Interrupcion Tanque(i)">
-               <columns>
-                  <TableColumn prefWidth="28.0" text="1" />
-                  <TableColumn prefWidth="29.0" text="2" />
-                  <TableColumn prefWidth="25.0" text="3" />
-                  <TableColumn prefWidth="25.0" text="4" />
-                  <TableColumn prefWidth="30.0" text="5" />
                </columns>
             </TableColumn>
             <TableColumn prefWidth="36.0" text="Cola " />
@@ -91,7 +106,16 @@
                      <columns>
                         <TableColumn prefWidth="33.0" text="Est." />
                         <TableColumn prefWidth="78.0" text="Carga Actual" />
-                        <TableColumn prefWidth="55.0" text="Tiempo" />
+                     </columns>
+                  </TableColumn>
+               </columns>
+            </TableColumn>
+            <TableColumn prefWidth="141.0" text="Buque">
+               <columns>
+                  <TableColumn prefWidth="165.0" text="2">
+                     <columns>
+                        <TableColumn prefWidth="33.0" text="Est." />
+                        <TableColumn prefWidth="78.0" text="Carga Actual" />
                      </columns>
                   </TableColumn>
                </columns>
