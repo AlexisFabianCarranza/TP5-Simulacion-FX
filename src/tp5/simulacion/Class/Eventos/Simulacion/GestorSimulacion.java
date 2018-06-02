@@ -15,6 +15,8 @@ import javafx.collections.ObservableList;
 import tp5.simulacion.Class.Objetos.Buque;
 import tp5.simulacion.Class.Objetos.Tanque;
 import distribuciones.*;
+import java.util.HashSet;
+import java.util.Set;
 /**
  *
  * @author aleex
@@ -104,8 +106,57 @@ public class GestorSimulacion {
         //Eze
     }
     
-    private void simularEventoFinCarga(){
+    private void simularEventoFinCarga(Tanque tanque){
         //Nico
+        this.reloj = tanque.getFinCarga();
+        
+        if (tanque.getCapacidadLibre() == 0) {
+            /*
+            manda al tanque a la refineria en caso de llegar a su capacidad
+            limite
+            */
+           this.mandarRefineria(tanque);
+        }
+        else {
+            
+            double tiempoCargando = tanque.getFinCarga() - tanque.getInicioCarga();
+            double cargaLibre = tanque.getCapacidadLibre() - tiempoCargando*10000.0;
+            tanque.setCapacidadLibre(cargaLibre);
+
+            if (this.cola == 0) {
+                tanque.ponerLibre();
+            }
+            else {
+                Buque buqueNuevo = new Buque();
+                this.simularIngresoPuerto();
+                buqueNuevo.setCargaActual(this.ingresoPuerto.getCargaActual());
+                double finCarga = this.generarFinCarga(buqueNuevo.getCargaActual());
+                int index = this.getIndexTanque(tanque);
+                this.buques[index] = buqueNuevo;
+                tanque.setFinCarga(finCarga);
+                tanque.ponerCargando();
+                tanque.setBuqueEnAtencion(buqueNuevo);
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    
+    private void mandarRefineria(Tanque tanque){
+        /*
+        setea los atributos necesario cuando el tanque es mandado a refineria
+        */
+        tanque.ponerDescargando();
+        tanque.setBuqueEnAtencion(null);
+        tanque.setFinCarga(-1);
+        
+        double finDescarga = 70000.0/4000.0;
+        finDescarga = Math.round(finDescarga*100.0)/100.0;
+        tanque.setFinDescarga(finDescarga);
+        
     }
     
     private double generarFinCarga(Tanque tanqueLibre, Buque buqueNuevo){
