@@ -15,6 +15,8 @@ import javafx.collections.ObservableList;
 import tp5.simulacion.Class.Objetos.Buque;
 import tp5.simulacion.Class.Objetos.Tanque;
 import distribuciones.*;
+import java.util.HashSet;
+import java.util.Set;
 /**
  *
  * @author aleex
@@ -108,8 +110,26 @@ public class GestorSimulacion {
         //Eze
     }
     
-    private void simularEventoFinCarga(){
+    private void simularEventoFinCarga(Tanque tanque){
         //Nico
+        this.reloj = tanque.getFinCarga();
+        
+        if (tanque.getCapacidadLibre() == 0) {
+            
+        }
+        else {
+            
+        }
+        
+        
+    }
+    
+    private void mandarRefineria(Tanque tanque){
+        tanque.ponerDescargando();
+        tanque.setBuqueEnAtencion(null);
+        tanque.setFinCarga(-1);
+        tanque.setEstado("D");
+        
     }
     
     private void simularEventoLlegadaBuque() {
