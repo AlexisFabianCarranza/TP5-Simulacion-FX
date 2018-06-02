@@ -199,10 +199,6 @@ public class VectorEstado {
         this.cola = cola;
     }
 
-
-    
-    
-
     public double getReloj() {
         return reloj;
     }

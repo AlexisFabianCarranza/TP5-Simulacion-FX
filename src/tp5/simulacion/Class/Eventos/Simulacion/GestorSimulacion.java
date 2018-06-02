@@ -100,9 +100,21 @@ public class GestorSimulacion {
         this.ingresoPuerto.setRndContenido(rndContenidoBuque);
     }
     
+    private void simularEventoInterrupcion(){
+        //Alexis
+    }
+    
+    private void simularEventoFinDescarga(){
+        //Eze
+    }
+    
+    private void simularEventoFinCarga(){
+        //Nico
+    }
+    
     private void simularEventoLlegadaBuque() {
         //Seteo del reloj
-        this.reloj = this.vectorEstadoActual.getReloj() + this.vectorEstadoActual.getProximaLllegada();
+        this.reloj = this.vectorEstadoActual.getProximaLllegada();
         
         //EVENTO LLEGADA DEL Proximo buque BUQUE
         this.simularLlegada();
@@ -129,6 +141,7 @@ public class GestorSimulacion {
             if(tanqueLibre.getCapacidadLibre() < tanqueLibre.getBuqueEnAtencion().getCargaActual()){
                 //Forma de calcular la descarga, 70000/4000 = 17.5
                 tanqueLibre.generarProximaInterrupcion(this.reloj);
+               
             }
         }
         this.actualizarVectorEstadoActual();
@@ -188,10 +201,8 @@ public class GestorSimulacion {
         while (this.reloj <= this.horaHasta){
             //ACA DEBERIA IR TODA LA LOGICA DE LA SIMULACION
             //ACa se deberia buscar cual es el evento siguiente
-            /*FinCarga fc = this.proximoFinCarga();
-            if (fc.getFinCarga() < fd.getHoraFinDescarga() && fc.getFinCarga() < this.llegadaBuque.getProxLlegada()){
-                
-            }*/
+            
+            
           
             //Al final de cada ciclo para almacenar los que se deben mostrar
             //if ( this.filaActual <= this.filaHasta && this.filaActual >= this.filaDesde) {

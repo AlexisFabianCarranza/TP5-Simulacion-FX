@@ -12,6 +12,7 @@ package tp5.simulacion.Class.Objetos;
 public class Tanque {
     private String estado; // Los estados pueden ser 'L' 'C' 'D'
     private double capacidadLibre;
+    
     private double finCarga;
     private double finDescarga;
     private double tiempoInterrupcion;
