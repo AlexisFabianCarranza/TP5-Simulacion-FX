@@ -32,7 +32,6 @@ public class GestorSimulacion {
     private LlegadaBuque llegadaBuque;
     private IngresoPuerto ingresoPuerto;
     
-    private Buque[] buques;//Vector para manejar los buques
     //Objetos Permanentes
     private Tanque tanque1;
     private Tanque tanque2;
@@ -77,7 +76,6 @@ public class GestorSimulacion {
         this.tanques[2] = tanque3;
         this.tanques[3] = tanque4;
         this.tanques[4] = tanque5;
-        this.buques = new Buque[5];
     }
     
     //Metodo separado, ya que en todos los casos son iguales
@@ -98,7 +96,7 @@ public class GestorSimulacion {
     }
     
     private void simularEventoFinDescarga(Tanque tanque){
-        //Eze
+        //Eze hay que ver si el tanque esta referenciado a un buque, osea, no tiene que pasar uno nuevo, tiene que reanudar la carga
         this.reloj = tanque.getFinDescarga();
         
         
@@ -113,12 +111,23 @@ public class GestorSimulacion {
             manda al tanque a la refineria en caso de llegar a su capacidad
             limite
             */
+           Buque buque = tanque.getBuqueEnAtencion();
+           double tiempoCargando = tanque.getFinCarga() - tanque.getInicioCarga() - 0.5;
+           double cargaRemanente = buque.getCargaActual() - tiempoCargando*10000.0 ;
+           buque.setCargaActual(cargaRemanente);
+           if(buque.getCargaActual() > 0){
+               buque.ponerEsperandoReanudacion();
+           }
+           else{
+               tanque.hundirBuque();
+           }
            this.mandarRefineria(tanque);
+           
         }
         else {
             
-            double tiempoCargando = tanque.getFinCarga() - tanque.getInicioCarga();
-            double cargaLibre = tanque.getCapacidadLibre() - tiempoCargando*10000.0;
+            double tiempoCargando = tanque.getFinCarga() - tanque.getInicioCarga() - 0.5;
+            double cargaLibre = tanque.getCapacidadLibre() - tiempoCargando*10000.0 ;
             tanque.setCapacidadLibre(cargaLibre);
 
             if (this.cola == 0) {
@@ -129,13 +138,13 @@ public class GestorSimulacion {
                 this.simularIngresoPuerto();
                 buqueNuevo.setCargaActual(this.ingresoPuerto.getCargaActual());
                 double finCarga = this.generarFinCarga(tanque, buqueNuevo);
-                int index = this.getIndexTanque(tanque);
-                this.buques[index] = buqueNuevo;
                 tanque.setFinCarga(finCarga);
                 tanque.ponerCargando();
                 tanque.setBuqueEnAtencion(buqueNuevo);
+                this.cola -= 1;
             }
         }
+        this.actualizarVectorEstadoActual();
     }
     
     
@@ -144,10 +153,7 @@ public class GestorSimulacion {
         setea los atributos necesario cuando el tanque es mandado a refineria
         */
         tanque.ponerDescargando();
-        tanque.setBuqueEnAtencion(null);
-        tanque.setFinCarga(-1);
         tanque.setFinDescarga(this.reloj + 17.5);
-        
     }
     
     private double generarFinCarga(Tanque tanqueLibre, Buque buqueNuevo){
@@ -183,8 +189,6 @@ public class GestorSimulacion {
             
             double finCarga = this.generarFinCarga(tanqueLibre, buqueNuevo);
             //coloca el buque en la casilla del tanque, osea tanque1 con buque1 ...
-            int index = this.getIndexTanque(tanqueLibre);
-            this.buques[index] = buqueNuevo;
             tanqueLibre.setInicioCarga(this.reloj);
             tanqueLibre.setFinCarga(finCarga);
             tanqueLibre.ponerCargando();
@@ -258,12 +262,4 @@ public class GestorSimulacion {
         return null;
     }
     
-    private int getIndexTanque(Tanque t){
-        for (int i = 0; i < this.tanques.length ; i++){
-            if (this.tanques[i].equals(t)){
-                return i;
-            }
-        }
-        return -1;
-    }
 }

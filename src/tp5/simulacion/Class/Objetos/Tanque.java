@@ -16,9 +16,6 @@ public class Tanque {
     private double inicioCarga;
     private double finCarga;
     private double finDescarga;
-    private double tiempoInterrupcion;
-    private double rndFinCarga;
-    private double proximaInterrupcion;
     
     
     
@@ -28,10 +25,8 @@ public class Tanque {
     public Tanque() {
         this.estado = "L";
         this.capacidadLibre = 70000;
-        this.rndFinCarga = -1;
         this.finCarga = -1;
         this.finDescarga = -1;
-        this.tiempoInterrupcion = -1;
     }
 
     public Tanque(double capacidadLibre, String estado) {
@@ -39,24 +34,28 @@ public class Tanque {
         this.capacidadLibre = capacidadLibre;
         this.finCarga = -1;
         this.finDescarga = -1;
-        this.tiempoInterrupcion = -1;
+    }
+    
+    public void hundirBuque(){
+        this.buqueEnAtencion.setCargaActual(-1);
+        this.buqueEnAtencion.setEstado("");
     }
     
     public void ponerCargando(){
         this.estado = "C";
+        this.finDescarga = -1;
     }
     
     public void ponerLibre(){
         this.estado = "L";
-        this.rndFinCarga = -1;
         this.finCarga = -1;
         this.finDescarga = -1;
-        this.tiempoInterrupcion = -1;
         this.buqueEnAtencion = null;
     }
     
     public void ponerDescargando(){
         this.estado = "D";
+        this.finCarga = -1;
     }
     
     public boolean estaLibre(){
@@ -98,32 +97,9 @@ public class Tanque {
         return finDescarga;
     }
 
-    public double getTiempoInterrupcion() {
-        return tiempoInterrupcion;
-    }
-
-    public double getRndFinCarga() {
-        return rndFinCarga;
-    }
-
-    public double getProximaInterrupcion() {
-        return proximaInterrupcion;
-    }
 
     public Buque getBuqueEnAtencion() {
         return buqueEnAtencion;
-    }
-
-    public void setTiempoInterrupcion(double tiempoInterrupcion) {
-        this.tiempoInterrupcion = tiempoInterrupcion;
-    }
-
-    public void setRndFinCarga(double rndFinCarga) {
-        this.rndFinCarga = rndFinCarga;
-    }
-
-    public void setProximaInterrupcion(double proximaInterrupcion) {
-        this.proximaInterrupcion = proximaInterrupcion;
     }
 
     public void setBuqueEnAtencion(Buque buqueEnAtencion) {

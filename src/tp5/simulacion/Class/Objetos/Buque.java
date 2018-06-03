@@ -12,7 +12,6 @@ import java.util.logging.Logger;
  * @author aleex
  */
 public class Buque {
-    private double rndContenido;
     private double cargaActual;
     private String estado; // Los estados pueden ser solo 'SA' 'ER' 'EA'
 //    private double tiempoRemanenteCarga;

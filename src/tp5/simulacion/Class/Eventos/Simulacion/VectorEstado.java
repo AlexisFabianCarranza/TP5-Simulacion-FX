@@ -111,6 +111,11 @@ public class VectorEstado {
         this.estadoB3 = estadoB3;
         this.estadoB4 = estadoB4;
         this.estadoB5 = estadoB5;
+        this.cola = cola;
+    }
+
+    public double getProxEventoHora(){
+        
         this.eventos = new double[11];
         this.eventos[0] = this.proximaLllegada;
         this.eventos[2] = this.tiempoFinCargaT1;
@@ -123,9 +128,6 @@ public class VectorEstado {
         this.eventos[9] = this.tiempoFinDescargaT3;
         this.eventos[10] = this.tiempoFinDescargaT4;
         this.eventos[11] = this.tiempoFinDescargaT5;
-    }
-
-    public double getProxEventoHora(){
         double menor = this.eventos[0];
         for ( int i = 1; i< eventos.length ; i++){
             if ( i < menor ){

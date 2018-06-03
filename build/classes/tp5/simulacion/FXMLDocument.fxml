@@ -76,8 +76,8 @@
                      <columns>
                         <TableColumn prefWidth="93.0" text="1">
                            <columns>
-                              <TableColumn fx:id="estadoT1Column" prefWidth="48.0" text="Est." />
-                              <TableColumn fx:id="capacidadLibreT1Column" minWidth="7.0" prefWidth="40.0" text="Cap. Libre" />
+                              <TableColumn fx:id="estadoT1Column" prefWidth="37.0" text="Est." />
+                              <TableColumn fx:id="capacidadLibreT1Column" minWidth="7.0" prefWidth="61.0" text="Cap. Libre" />
                            </columns>
                         </TableColumn>
                         <TableColumn prefWidth="83.0" text="2">
