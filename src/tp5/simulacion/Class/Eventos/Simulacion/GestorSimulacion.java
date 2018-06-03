@@ -135,11 +135,7 @@ public class GestorSimulacion {
                 tanque.ponerCargando();
                 tanque.setBuqueEnAtencion(buqueNuevo);
             }
-            
-            
         }
-        
-        
     }
     
     
@@ -150,10 +146,7 @@ public class GestorSimulacion {
         tanque.ponerDescargando();
         tanque.setBuqueEnAtencion(null);
         tanque.setFinCarga(-1);
-        
-        double finDescarga = 70000.0/4000.0;
-        finDescarga = Math.round(finDescarga*100.0)/100.0;
-        tanque.setFinDescarga(finDescarga);
+        tanque.setFinDescarga(this.reloj + 17.5);
         
     }
     
