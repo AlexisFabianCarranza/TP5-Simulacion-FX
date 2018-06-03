@@ -272,6 +272,8 @@ public class GestorSimulacion {
         return this.vectoresEstados;
     }
     
+    
+    
     private Tanque getTanqueLibre(){
         for (Object tanque: this.tanques){
             Tanque tanqueAux = (Tanque) tanque;

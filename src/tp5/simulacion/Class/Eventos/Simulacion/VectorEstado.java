@@ -12,62 +12,102 @@ package tp5.simulacion.Class.Eventos.Simulacion;
 public class VectorEstado {
     
     private double reloj;
+    
+    /*
+    llegada de buque
+    */
     private double rndLLegadaBuque;
     private double tiempoLLegadaBuque;
     private double proximaLllegada;
+    
+    /*
+    ingreso a puerto
+    */
     private double rndCarga;
     private double cargaBuque;
    
     //tanques costeros
     
-    private double capacidadLibreT1;
+    private double tiempoInicioCargaT1, tiempoFinCargaT1, tiempoFinDescargaT1, capacidadLibreT1;
+    private double tiempoInicioCargaT2, tiempoFinCargaT2, tiempoFinDescargaT2, capacidadLibreT2;
+    private double tiempoInicioCargaT3, tiempoFinCargaT3, tiempoFinDescargaT3, capacidadLibreT3;
+    private double tiempoInicioCargaT4, tiempoFinCargaT4, tiempoFinDescargaT4, capacidadLibreT4;
+    private double tiempoInicioCargaT5, tiempoFinCargaT5, tiempoFinDescargaT5, capacidadLibreT5;
+    
     private String estadoT1;
-    private double tiempoProximaInterrupcionT1;
-    private double tiempoDescargaT1;
-    private double capacidadLibreT2;
     private String estadoT2;
-    private double tiempoProximaInterrupcionT2;
-    private double tiempoDescargaT2;
-    private double capacidadLibreT3;
     private String estadoT3;
-    private double tiempoProximaInterrupcionT3;
-    private double tiempoDescargaT3;
-    private double capacidadLibreT4;
     private String estadoT4;
-    private double tiempoProximaInterrupcionT4;
-    private double tiempoDescargaT4;
-    private double capacidadLibreT5;
     private String estadoT5;
-    private double tiempoProximaInterrupcionT5;
-    private double tiempoDescargaT5;
-
+    
     // buques
     
-    private double cargaRemanenteB1;
+    private double cargaActualB1;
+    private double cargaActualB2;
+    private double cargaActualB3;
+    private double cargaActualB4;
+    private double cargaActualB5;
+    
+    
     private String estadoB1;
-    private double finCargaB1;
-    private String enTanqueB1;
-    private double cargaRemanenteB2;
     private String estadoB2;
-    private double finCargaB2;
-    private String enTanqueB2;
-    private double cargaRemanenteB3;
     private String estadoB3;
-    private double finCargaB3;
-    private String enTanqueB3;
-    private double cargaRemanenteB4;
     private String estadoB4;
-    private double finCargaB4;
-    private String enTanqueB4;
-    private double cargaRemanenteB5;
     private String estadoB5;
-    private double finCargaB5;
-    private String enTanqueB5;
     
     // cola
     
     private int cola;
     
+    public VectorEstado(double reloj, double rndLlegada, double tiempoLlegada, double proxLlegada,
+            double rndCarga, double cargaBuque,
+            double inicioT1, double finT1, double finDescargaT1, double capacidadT1, String estadoT1,
+            double inicioT2, double finT2, double finDescargaT2, double capacidadT2, String estadoT2,
+            double inicioT3, double finT3, double finDescargaT3, double capacidadT3, String estadoT3,
+            double inicioT4, double finT4, double finDescargaT4, double capacidadT4, String estadoT4,
+            double inicioT5, double finT5, double finDescargaT5, double capacidadT5, String estadoT5,
+            double cargaActualB1, double cargaActualB2, double cargaActualB3, double cargaActualB4, double cargaActualB5,
+            String estadoB1, String estadoB2, String estadoB3, String estadoB4, String estadoB5, int cola) {
+        this.reloj = reloj;
+        this.rndLLegadaBuque = rndLlegada;
+        this.tiempoLLegadaBuque = tiempoLlegada;
+        this.proximaLllegada = proxLlegada;
+        this.rndCarga = rndCarga;
+        this.cargaBuque = cargaBuque;
+        this.tiempoInicioCargaT1 = inicioT1;
+        this.tiempoInicioCargaT2 = inicioT2;
+        this.tiempoInicioCargaT3 = inicioT3;
+        this.tiempoInicioCargaT4 = inicioT4;
+        this.tiempoInicioCargaT5 = inicioT5;
+        this.tiempoFinCargaT1 = finT1;
+        this.tiempoFinCargaT2 = finT2;
+        this.tiempoFinCargaT3 = finT3;
+        this.tiempoFinCargaT4 = finT4;
+        this.tiempoFinCargaT5 = finT5;
+        this.tiempoFinDescargaT1 = finDescargaT1;
+        this.tiempoFinDescargaT2 = finDescargaT2;
+        this.tiempoFinDescargaT3 = finDescargaT3;
+        this.tiempoFinDescargaT4 = finDescargaT4;
+        this.tiempoFinDescargaT5 = finDescargaT5;
+        this.capacidadLibreT1 = capacidadT1;
+        this.capacidadLibreT2 = capacidadT2;
+        this.capacidadLibreT3 = capacidadT3;
+        this.capacidadLibreT4 = capacidadT4;
+        this.capacidadLibreT5 = capacidadT5;
+        this.estadoT1 = estadoT1;
+        this.estadoT2 = estadoT2;
+        this.estadoT3 = estadoT3;
+        this.estadoT4 = estadoT4;
+        this.estadoT5 = estadoT5;
+        this.cargaActualB1 = cargaActualB1;
+        this.cargaActualB2 = cargaActualB2;
+        this.cargaActualB3 = cargaActualB3;
+        this.cargaActualB4 = cargaActualB4;
+        this.cargaActualB5 = cargaActualB5;
+    }
+
+
+
     /*public VectorEstado(double reloj, double rndLlBuque, double tiempoLlBuque, double proxLlBuque, double rndCarga, int carga, double capacidadLibre[], String estadoTank[], double tiempoInterrupcion[], double tiempoDescarga[], 
             double cargaRemanente[], String estadoBuque[], double finCarga[], String enTanque[], int cola){
         
@@ -138,66 +178,66 @@ public class VectorEstado {
         
     }*/
 
-    public VectorEstado(double reloj, double rndLLegadaBuque, double tiempoLLegadaBuque, double proximaLllegada, 
-                        double rndCarga, double cargaBuque, 
-                        double capacidadLibreT1, String estadoT1, double tiempoProximaInterrupcionT1, double tiempoDescargaT1, 
-                        double capacidadLibreT2, String estadoT2, double tiempoProximaInterrupcionT2, double tiempoDescargaT2, 
-                        double capacidadLibreT3, String estadoT3, double tiempoProximaInterrupcionT3, double tiempoDescargaT3, 
-                        double capacidadLibreT4, String estadoT4, double tiempoProximaInterrupcionT4, double tiempoDescargaT4, 
-                        double capacidadLibreT5, String estadoT5, double tiempoProximaInterrupcionT5, double tiempoDescargaT5, 
-                        double cargaRemanenteB1, String estadoB1, double finCargaB1, String enTanqueB1, 
-                        double cargaRemanenteB2, String estadoB2, double finCargaB2, String enTanqueB2, 
-                        double cargaRemanenteB3, String estadoB3, double finCargaB3, String enTanqueB3, 
-                        double cargaRemanenteB4, String estadoB4, double finCargaB4, String enTanqueB4, 
-                        double cargaRemanenteB5, String estadoB5, double finCargaB5, String enTanqueB5, int cola) {
-        this.reloj = reloj;
-        this.rndLLegadaBuque = rndLLegadaBuque;
-        this.tiempoLLegadaBuque = tiempoLLegadaBuque;
-        this.proximaLllegada = proximaLllegada;
-        this.rndCarga = rndCarga;
-        this.cargaBuque = cargaBuque;
-        this.capacidadLibreT1 = capacidadLibreT1;
-        this.estadoT1 = estadoT1;
-        this.tiempoProximaInterrupcionT1 = tiempoProximaInterrupcionT1;
-        this.tiempoDescargaT1 = tiempoDescargaT1;
-        this.capacidadLibreT2 = capacidadLibreT2;
-        this.estadoT2 = estadoT2;
-        this.tiempoProximaInterrupcionT2 = tiempoProximaInterrupcionT2;
-        this.tiempoDescargaT2 = tiempoDescargaT2;
-        this.capacidadLibreT3 = capacidadLibreT3;
-        this.estadoT3 = estadoT3;
-        this.tiempoProximaInterrupcionT3 = tiempoProximaInterrupcionT3;
-        this.tiempoDescargaT3 = tiempoDescargaT3;
-        this.capacidadLibreT4 = capacidadLibreT4;
-        this.estadoT4 = estadoT4;
-        this.tiempoProximaInterrupcionT4 = tiempoProximaInterrupcionT4;
-        this.tiempoDescargaT4 = tiempoDescargaT4;
-        this.capacidadLibreT5 = capacidadLibreT5;
-        this.estadoT5 = estadoT5;
-        this.tiempoProximaInterrupcionT5 = tiempoProximaInterrupcionT5;
-        this.tiempoDescargaT5 = tiempoDescargaT5;
-        this.cargaRemanenteB1 = cargaRemanenteB1;
-        this.estadoB1 = estadoB1;
-        this.finCargaB1 = finCargaB1;
-        this.enTanqueB1 = enTanqueB1;
-        this.cargaRemanenteB2 = cargaRemanenteB2;
-        this.estadoB2 = estadoB2;
-        this.finCargaB2 = finCargaB2;
-        this.enTanqueB2 = enTanqueB2;
-        this.cargaRemanenteB3 = cargaRemanenteB3;
-        this.estadoB3 = estadoB3;
-        this.finCargaB3 = finCargaB3;
-        this.enTanqueB3 = enTanqueB3;
-        this.cargaRemanenteB4 = cargaRemanenteB4;
-        this.estadoB4 = estadoB4;
-        this.finCargaB4 = finCargaB4;
-        this.enTanqueB4 = enTanqueB4;
-        this.cargaRemanenteB5 = cargaRemanenteB5;
-        this.estadoB5 = estadoB5;
-        this.finCargaB5 = finCargaB5;
-        this.enTanqueB5 = enTanqueB5;
-        this.cola = cola;
-    }
+//    public VectorEstado(double reloj, double rndLLegadaBuque, double tiempoLLegadaBuque, double proximaLllegada, 
+//                        double rndCarga, double cargaBuque, 
+//                        double capacidadLibreT1, String estadoT1, double tiempoProximaInterrupcionT1, double tiempoDescargaT1, 
+//                        double capacidadLibreT2, String estadoT2, double tiempoProximaInterrupcionT2, double tiempoDescargaT2, 
+//                        double capacidadLibreT3, String estadoT3, double tiempoProximaInterrupcionT3, double tiempoDescargaT3, 
+//                        double capacidadLibreT4, String estadoT4, double tiempoProximaInterrupcionT4, double tiempoDescargaT4, 
+//                        double capacidadLibreT5, String estadoT5, double tiempoProximaInterrupcionT5, double tiempoDescargaT5, 
+//                        double cargaRemanenteB1, String estadoB1, double finCargaB1, String enTanqueB1, 
+//                        double cargaRemanenteB2, String estadoB2, double finCargaB2, String enTanqueB2, 
+//                        double cargaRemanenteB3, String estadoB3, double finCargaB3, String enTanqueB3, 
+//                        double cargaRemanenteB4, String estadoB4, double finCargaB4, String enTanqueB4, 
+//                        double cargaRemanenteB5, String estadoB5, double finCargaB5, String enTanqueB5, int cola) {
+//        this.reloj = reloj;
+//        this.rndLLegadaBuque = rndLLegadaBuque;
+//        this.tiempoLLegadaBuque = tiempoLLegadaBuque;
+//        this.proximaLllegada = proximaLllegada;
+//        this.rndCarga = rndCarga;
+//        this.cargaBuque = cargaBuque;
+//        this.capacidadLibreT1 = capacidadLibreT1;
+//        this.estadoT1 = estadoT1;
+//        this.tiempoProximaInterrupcionT1 = tiempoProximaInterrupcionT1;
+//        this.tiempoDescargaT1 = tiempoDescargaT1;
+//        this.capacidadLibreT2 = capacidadLibreT2;
+//        this.estadoT2 = estadoT2;
+//        this.tiempoProximaInterrupcionT2 = tiempoProximaInterrupcionT2;
+//        this.tiempoDescargaT2 = tiempoDescargaT2;
+//        this.capacidadLibreT3 = capacidadLibreT3;
+//        this.estadoT3 = estadoT3;
+//        this.tiempoProximaInterrupcionT3 = tiempoProximaInterrupcionT3;
+//        this.tiempoDescargaT3 = tiempoDescargaT3;
+//        this.capacidadLibreT4 = capacidadLibreT4;
+//        this.estadoT4 = estadoT4;
+//        this.tiempoProximaInterrupcionT4 = tiempoProximaInterrupcionT4;
+//        this.tiempoDescargaT4 = tiempoDescargaT4;
+//        this.capacidadLibreT5 = capacidadLibreT5;
+//        this.estadoT5 = estadoT5;
+//        this.tiempoProximaInterrupcionT5 = tiempoProximaInterrupcionT5;
+//        this.tiempoDescargaT5 = tiempoDescargaT5;
+//        this.cargaRemanenteB1 = cargaRemanenteB1;
+//        this.estadoB1 = estadoB1;
+//        this.finCargaB1 = finCargaB1;
+//        this.enTanqueB1 = enTanqueB1;
+//        this.cargaRemanenteB2 = cargaRemanenteB2;
+//        this.estadoB2 = estadoB2;
+//        this.finCargaB2 = finCargaB2;
+//        this.enTanqueB2 = enTanqueB2;
+//        this.cargaRemanenteB3 = cargaRemanenteB3;
+//        this.estadoB3 = estadoB3;
+//        this.finCargaB3 = finCargaB3;
+//        this.enTanqueB3 = enTanqueB3;
+//        this.cargaRemanenteB4 = cargaRemanenteB4;
+//        this.estadoB4 = estadoB4;
+//        this.finCargaB4 = finCargaB4;
+//        this.enTanqueB4 = enTanqueB4;
+//        this.cargaRemanenteB5 = cargaRemanenteB5;
+//        this.estadoB5 = estadoB5;
+//        this.finCargaB5 = finCargaB5;
+//        this.enTanqueB5 = enTanqueB5;
+//        this.cola = cola;
+//    }
 
     public double getReloj() {
         return reloj;
