@@ -58,7 +58,9 @@ public class VectorEstado {
     // cola
     
     private int cola;
-    
+     
+    //Vector que ayuda para ver cual es el proximo evento
+    private double[] eventos;
     public VectorEstado(double reloj, double rndLlegada, double tiempoLlegada, double proxLlegada,
             double rndCarga, double cargaBuque,
             double inicioT1, double finT1, double finDescargaT1, double capacidadT1, String estadoT1,
@@ -109,8 +111,29 @@ public class VectorEstado {
         this.estadoB3 = estadoB3;
         this.estadoB4 = estadoB4;
         this.estadoB5 = estadoB5;
+        this.eventos = new double[11];
+        this.eventos[0] = this.proximaLllegada;
+        this.eventos[2] = this.tiempoFinCargaT1;
+        this.eventos[3] = this.tiempoFinCargaT2;
+        this.eventos[4] = this.tiempoFinCargaT3;
+        this.eventos[5] = this.tiempoFinCargaT4;
+        this.eventos[6] = this.tiempoFinCargaT5;
+        this.eventos[7] = this.tiempoFinDescargaT1;
+        this.eventos[8] = this.tiempoFinDescargaT2;
+        this.eventos[9] = this.tiempoFinDescargaT3;
+        this.eventos[10] = this.tiempoFinDescargaT4;
+        this.eventos[11] = this.tiempoFinDescargaT5;
     }
 
+    public double getProxEventoHora(){
+        double menor = this.eventos[0];
+        for ( int i = 1; i< eventos.length ; i++){
+            if ( i < menor ){
+                menor = i;
+            } 
+        }
+        return menor;
+    }
     public double getReloj() {
         return reloj;
     }

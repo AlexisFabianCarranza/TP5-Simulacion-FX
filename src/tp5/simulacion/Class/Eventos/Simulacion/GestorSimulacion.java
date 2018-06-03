@@ -80,11 +80,6 @@ public class GestorSimulacion {
         this.buques = new Buque[5];
     }
     
-    
-    private void simularEventoFinCarga(double finCarga){
-        this.reloj = this.vectorEstadoActual.getReloj() + finCarga;
-        
-    }
     //Metodo separado, ya que en todos los casos son iguales
     private void simularLlegada(){
         double rndLlegada = this.rnd.nextDouble();
@@ -102,8 +97,11 @@ public class GestorSimulacion {
         this.ingresoPuerto.setRndContenido(rndContenidoBuque);
     }
     
-    private void simularEventoFinDescarga(){
+    private void simularEventoFinDescarga(Tanque tanque){
         //Eze
+        this.reloj = tanque.getFinDescarga();
+        
+        
     }
     
     private void simularEventoFinCarga(Tanque tanque){
@@ -196,58 +194,32 @@ public class GestorSimulacion {
             this.buques[index] = buqueNuevo;
             tanqueLibre.setInicioCarga(this.reloj);
             tanqueLibre.setFinCarga(finCarga);
-            tanqueLibre.setEstado("C");
+            tanqueLibre.ponerCargando();
             tanqueLibre.setBuqueEnAtencion(buqueNuevo);
-            
-            
         }
-       //this.actualizarVectorEstadoActual();
+       this.actualizarVectorEstadoActual();
     }
     
-//    public void actualizarVectorEstadoActual(){
-//        //LA idea es que en este metodo se actualize todos los atributos del vector estado, 
-//        //con los valores actuales de los objetos
-//        Buque b1 = this.tanque1.getBuqueEnAtencion();
-//        Buque b2 = this.tanque2.getBuqueEnAtencion();
-//        Buque b3 = this.tanque3.getBuqueEnAtencion();
-//        Buque b4 = this.tanque4.getBuqueEnAtencion();
-//        Buque b5 = this.tanque5.getBuqueEnAtencion();
-//        this.vectorEstadoActual = new VectorEstado(this.reloj, this.llegadaBuque.getRndLLegadaBuque(), 
-//               this.llegadaBuque.getTiempoLLegadaBuque(),this.llegadaBuque.getProximaLllegada(),
-//               this.ingresoPuerto.getRndContenido() , this.ingresoPuerto.getCargaActual(), 
-//               this.tanque1.getCapacidadLibre(), this.tanque1.getEstado(), this.tanque1.getProximaInterrupcion(), this.tanque1.getFinDescarga(),
-//               this.tanque2.getCapacidadLibre(), this.tanque2.getEstado(), this.tanque2.getProximaInterrupcion(), this.tanque1.getFinDescarga(),
-//               this.tanque3.getCapacidadLibre(), this.tanque3.getEstado(), this.tanque3.getProximaInterrupcion(), this.tanque1.getFinDescarga(),
-//               this.tanque4.getCapacidadLibre(), this.tanque4.getEstado(), this.tanque4.getProximaInterrupcion(), this.tanque1.getFinDescarga(),
-//               this.tanque5.getCapacidadLibre(), this.tanque5.getEstado(), this.tanque5.getProximaInterrupcion(), this.tanque1.getFinDescarga(),
-//               b1.getCargaActual() , b1.getEstado(), b1.getTiempoRemanenteCarga(), "tanque 1",
-//               b2.getCargaActual() , b2.getEstado(), b2.getTiempoRemanenteCarga(), "tanque 2",
-//               b3.getCargaActual() , b3.getEstado(), b3.getTiempoRemanenteCarga(), "tanque 3",
-//               b4.getCargaActual() , b4.getEstado(), b4.getTiempoRemanenteCarga(), "tanque 4",
-//               b5.getCargaActual() , b5.getEstado(), b5.getTiempoRemanenteCarga(), "tanque 5",
-//               this.cola
-//        );
-//    }
-    
-    public String proximoEvento(){
-        //Si este metodo funciona bien, deberia seleciionar el evento proximo
-        double minimaHora = this.reloj;
-        String evento;
-        if(this.llegadaBuque.getProximaLllegada() < minimaHora){
-            return "LlegadaBuque";
-        }
-        for(int i = 0 ; i < this.tanques.length ; i++){
-            if(minimaHora < this.tanques[i].getFinCarga()){
-                minimaHora = this.tanques[i].getFinCarga();
-                evento = "FinCarga";
-            }
-            if(minimaHora < this.tanques[i].getFinDescarga()){
-                minimaHora = this.tanques[i].getFinDescarga();
-                evento = "FinDescarga";
-            }
-        }
-        
-        return null;
+    public void actualizarVectorEstadoActual(){
+        //LA idea es que en este metodo se actualize todos los atributos del vector estado, 
+        //con los valores actuales de los objetos
+        Buque b1 = this.tanque1.getBuqueEnAtencion();
+        Buque b2 = this.tanque2.getBuqueEnAtencion();
+        Buque b3 = this.tanque3.getBuqueEnAtencion();
+        Buque b4 = this.tanque4.getBuqueEnAtencion();
+        Buque b5 = this.tanque5.getBuqueEnAtencion();
+        this.vectorEstadoActual = new VectorEstado(this.reloj, this.llegadaBuque.getRndLLegadaBuque(), 
+               this.llegadaBuque.getTiempoLLegadaBuque(),this.llegadaBuque.getProximaLllegada(),
+               this.ingresoPuerto.getRndContenido() , this.ingresoPuerto.getCargaActual(), 
+               this.tanque1.getInicioCarga(), this.tanque1.getFinCarga(), this.tanque1.getFinDescarga(), this.tanque1.getCapacidadLibre(), this.tanque1.getEstado(),
+               this.tanque2.getInicioCarga(), this.tanque2.getFinCarga(), this.tanque2.getFinDescarga(), this.tanque2.getCapacidadLibre(), this.tanque2.getEstado(),
+               this.tanque3.getInicioCarga(), this.tanque3.getFinCarga(), this.tanque3.getFinDescarga(), this.tanque3.getCapacidadLibre(), this.tanque3.getEstado(),
+               this.tanque4.getInicioCarga(), this.tanque4.getFinCarga(), this.tanque4.getFinDescarga(), this.tanque4.getCapacidadLibre(), this.tanque4.getEstado(),
+               this.tanque5.getInicioCarga(), this.tanque5.getFinCarga(), this.tanque5.getFinDescarga(), this.tanque5.getCapacidadLibre(), this.tanque5.getEstado(),
+                b1.getCargaActual(),  b2.getCargaActual(),  b3.getCargaActual(),  b4.getCargaActual(),  b5.getCargaActual(),
+                b1.getEstado(), b2.getEstado(), b3.getEstado(), b4.getEstado(), b5.getEstado(),
+               this.cola
+        );
     }
     
     
@@ -259,9 +231,18 @@ public class GestorSimulacion {
         while (this.reloj <= this.horaHasta){
             //ACA DEBERIA IR TODA LA LOGICA DE LA SIMULACION
             //ACa se deberia buscar cual es el evento siguiente
-            
-            
-          
+            double horaEvento = this.vectorEstadoActual.getProxEventoHora();
+            if ( this.llegadaBuque.getProximaLllegada() == horaEvento){
+                this.simularEventoLlegadaBuque();
+            }
+            for(Tanque i:this.tanques){
+                if(i.getFinCarga() == horaEvento){
+                    this.simularEventoFinCarga(i);
+                }
+                if(i.getFinDescarga() == horaEvento){
+                    this.simularEventoFinDescarga(i);
+                }
+            }          
             //Al final de cada ciclo para almacenar los que se deben mostrar
             //if ( this.filaActual <= this.filaHasta && this.filaActual >= this.filaDesde) {
             //    VectorEstadoView v = new VectorEstadoView(this.vectorEstadoActual);
