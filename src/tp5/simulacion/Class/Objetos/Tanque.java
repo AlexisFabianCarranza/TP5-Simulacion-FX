@@ -60,6 +60,7 @@ public class Tanque {
     public void ponerDescargando(){
         this.estado = "D";
         this.finCarga = -1;
+        this.inicioCarga = -1;
     }
     
     public boolean estaLibre(){

@@ -172,6 +172,9 @@ public class VectorEstadoView {
             this.tiempoFinDescargaT5 = String.valueOf(v.getTiempoFinDescargaT5());
         }
         
+        
+        
+        
         this.capacidadLibreT1 = String.valueOf(v.getCapacidadLibreT1());        
         this.capacidadLibreT2 = String.valueOf(v.getCapacidadLibreT2());        
         this.capacidadLibreT3 = String.valueOf(v.getCapacidadLibreT3());        
@@ -190,11 +193,42 @@ public class VectorEstadoView {
         this.estadoT4 = v.getEstadoT4();
         this.estadoT5 = v.getEstadoT5();
         
-        this.cargaActualB1 = String.valueOf(v.getCargaActualB1());
-        this.cargaActualB2 = String.valueOf(v.getCargaActualB2());
-        this.cargaActualB3 = String.valueOf(v.getCargaActualB3());
-        this.cargaActualB4 = String.valueOf(v.getCargaActualB4());
-        this.cargaActualB5 = String.valueOf(v.getCargaActualB5());
+        
+        if (v.getCargaActualB1() < 0) {
+            this.cargaActualB1 = "";
+        }
+        else {
+            this.cargaActualB1 = String.valueOf(v.getCargaActualB1());
+        }
+        
+        if (v.getCargaActualB2() < 0) {
+            this.cargaActualB2 = "";
+        }
+        else {
+            this.cargaActualB2 = String.valueOf(v.getCargaActualB2());
+        }
+        
+        if (v.getCargaActualB3() < 0) {
+            this.cargaActualB3 = "";
+        }
+        else {
+            this.cargaActualB3 = String.valueOf(v.getCargaActualB3());
+        }
+        
+        if (v.getCargaActualB4() < 0) {
+            this.cargaActualB4 = "";
+        }
+        else {
+            this.cargaActualB4 = String.valueOf(v.getCargaActualB4());
+        }
+        
+        if (v.getCargaActualB5() < 0) {
+            this.cargaActualB5 = "";
+        }
+        else {
+            this.cargaActualB5 = String.valueOf(v.getCargaActualB5());
+        }
+        
         
         this.cola = String.valueOf(v.getCola());
                     

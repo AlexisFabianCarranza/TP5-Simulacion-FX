@@ -50,7 +50,6 @@ public class GestorSimulacion {
     //Atributo que se utiliza para contar las filas, para poder mostrar luego
     
     public GestorSimulacion(double desde , double hasta, double horaHasta) {
-        System.out.println("se esta inicializando la wea");
         this.rnd = new Random();
         this.vectoresEstados = FXCollections.observableArrayList();
         this.horaHasta = horaHasta;
@@ -114,7 +113,9 @@ public class GestorSimulacion {
     private void simularEventoFinCarga(Tanque tanque){
         //Nico
         this.reloj = tanque.getFinCarga();
-        System.out.println("CAPACIDAD DEL TANQUE LIBRE ANTES DE SETEO::: " + tanque.getCapacidadLibre());
+        double tiempoCargando = tanque.getFinCarga() - tanque.getInicioCarga() - 0.5;
+        double cargaLibre = tanque.getCapacidadLibre() - tiempoCargando*10000.0 ;
+        tanque.setCapacidadLibre(cargaLibre);
         
         if (tanque.getCapacidadLibre() == 0) {
             /*
@@ -122,7 +123,6 @@ public class GestorSimulacion {
             limite
             */
            Buque buque = tanque.getBuqueEnAtencion();
-           double tiempoCargando = tanque.getFinCarga() - tanque.getInicioCarga() - 0.5;
            double cargaRemanente = buque.getCargaActual() - tiempoCargando*10000.0 ;
            buque.setCargaActual(cargaRemanente);
            if(buque.getCargaActual() > 0){
@@ -135,11 +135,6 @@ public class GestorSimulacion {
            
         }
         else {
-            System.out.println("TIEMPO FIN DE CARGA:::  " + tanque.getFinCarga() + "   ---- TIEMPO INICIO DE CARGA::: " + tanque.getInicioCarga());
-            double tiempoCargando = tanque.getFinCarga() - tanque.getInicioCarga() - 0.5;
-            System.out.println("TIEMPO QUE CARGO (SIN INCLUIR ENCENDIDO DE BOMBA) :::: " + tiempoCargando);
-            double cargaLibre = tanque.getCapacidadLibre() - tiempoCargando*10000.0 ;
-            tanque.setCapacidadLibre(cargaLibre);
 
             if (this.cola == 0) {
                 tanque.ponerLibre();
@@ -148,6 +143,7 @@ public class GestorSimulacion {
                 Buque buqueNuevo = new Buque();
                 this.simularIngresoPuerto();
                 buqueNuevo.setCargaActual(this.ingresoPuerto.getCargaActual());
+                buqueNuevo.ponerSiendoAtendido();
                 double finCarga = this.generarFinCarga(tanque, buqueNuevo);
                 tanque.setInicioCarga(this.reloj);
                 tanque.setFinCarga(finCarga);
@@ -176,14 +172,11 @@ public class GestorSimulacion {
         double carga;
         if(tanqueLibre.getCapacidadLibre() < buqueNuevo.getCargaActual()){
             carga = tanqueLibre.getCapacidadLibre();
-            System.out.println("CARGA TOMADA DESDE LIMITE DE TANQUE::: " + carga);
         }
         else{
             carga = buqueNuevo.getCargaActual();
-            System.out.println("CARGA TOMADA DESDE CAPACIDAD DE BUQUE:::" + carga);
         }
         double FinCarga = (0.5 + carga / 10000.0) + this.reloj;
-        System.out.println("PROXIMO FIN DE CARGA SERÄ EN:: " + FinCarga);
         return Math.round(FinCarga * 100.0) / 100.0;
     }
     
@@ -193,9 +186,6 @@ public class GestorSimulacion {
         
         //EVENTO LLEGADA DEL Proximo buque BUQUE
         this.simularLlegada();
-        System.out.println("RNDLlegada: " + this.llegadaBuque.getRndLLegadaBuque());
-        System.out.println("Tiempo : " + this.llegadaBuque.getTiempoLLegadaBuque());
-        System.out.println("Prox: " + this.llegadaBuque.getProximaLlegada());
          
         //EVENTO Ingreso Buque ; PRimero me fijo si hay tanque libre
         Tanque tanqueLibre = this.getTanqueLibre();
@@ -248,37 +238,25 @@ public class GestorSimulacion {
         //Seteo el vector estado Actual en la posicion 0 del reloj
         this.actualizarVectorEstadoActual();
         while (this.reloj <= this.horaHasta){
-//            System.out.println("");
-//            System.out.println("");
-//            System.out.println("simulando, por favor espera :) ");
-            //ACA DEBERIA IR TODA LA LOGICA DE LA SIMULACION
-            //ACa se deberia buscar cual es el evento siguiente
             this.ingresoPuerto.setCargaActual(-1);
             this.ingresoPuerto.setRndContenido(-1);
             double horaEvento = this.vectorEstadoActual.getProxEventoHora();
             
             for(Tanque i:this.tanques){
                 if ( this.llegadaBuque.getProximaLlegada() == horaEvento){
-                    System.out.println("Llegada de buque*********");
                     this.simularEventoLlegadaBuque();
                     break;
                 }
                 if(i.getFinCarga() == horaEvento){
-                    System.out.println("FinCarga-**************");
                     this.simularEventoFinCarga(i);
                     break;
                 }
                 if(i.getFinDescarga() == horaEvento){
-                    System.out.println("FinDescarga-*************");
                     this.simularEventoFinDescarga(i);
                     break;
                 }
             }          
             //Al final de cada ciclo para almacenar los que se deben mostrar
-//            if ( this.reloj >= this.horaDesdeVER && this.reloj<= this.horaHastaVER) {
-//                VectorEstado v = this.vectorEstadoActual;
-//                this.vectoresEstados.add(v);
-//            }
             if ( this.reloj >= this.horaDesdeVER && this.reloj<= this.horaHastaVER) {
                 VectorEstadoView v = new VectorEstadoView(this.vectorEstadoActual);
                 this.vectoresEstados.add(v);

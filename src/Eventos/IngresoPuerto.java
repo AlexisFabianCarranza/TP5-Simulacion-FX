@@ -25,7 +25,7 @@ public class IngresoPuerto {
         if(rnd <= 0.66){
             return 20000.0;
         }
-        if(rnd <= 0.99){
+        if(rnd <= 1.01){
             return 25000.0;
         }
         return 0;
