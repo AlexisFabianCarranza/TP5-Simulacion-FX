@@ -118,6 +118,22 @@ public class VectorEstado {
 
     public double getProxEventoHora(){
         
+        String evento;
+        evento = "RELOJ :: " + this.reloj + "   Cola::: "   + this.cola + "   --- ";
+        evento += "proxLlegada: " + proximaLlegada + " --- ";
+        evento += "finCargaT1: " + tiempoFinCargaT1 + " --- ";
+        evento += "finCargaT2: " + tiempoFinCargaT2 + " --- ";
+        evento += "finCargaT3: " + tiempoFinCargaT3 + " --- ";
+        evento += "finCargaT4: " + tiempoFinCargaT4 + " --- ";
+        evento += "finCargaT5: " + tiempoFinCargaT5 + " --- ";
+        evento += "finDescargaT1: " + tiempoFinDescargaT1 + " --- ";
+        evento += "finDescargaT2: " + tiempoFinDescargaT2 + " --- ";
+        evento += "finDescargaT3: " + tiempoFinDescargaT3 + " --- ";
+        evento += "finDescargaT4: " + tiempoFinDescargaT4 + " --- ";
+        evento += "finDescargaT5: " + tiempoFinDescargaT5 + " --- ";
+        System.out.println(evento);
+        
+        
         this.eventos = new double[11];
         this.eventos[0] = this.proximaLlegada;
         this.eventos[1] = this.tiempoFinCargaT1;
@@ -132,8 +148,8 @@ public class VectorEstado {
         this.eventos[10] = this.tiempoFinDescargaT5;
         double menor = this.proximaLlegada;
         for ( int i = 1; i< eventos.length ; i++){
-            if ( i < menor && i >= 0 ){
-                menor = i;
+            if ( eventos[i] < menor && eventos[i] >= 0 ){
+                menor = eventos[i];
             } 
         }
         System.out.println("EL menor es : "+ menor);

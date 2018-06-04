@@ -66,9 +66,17 @@ public class GestorSimulacion {
         this.tanque2 = new Tanque(70000,"L");
         this.tanque3 = new Tanque(0,"D");
         this.tanque3.setFinDescarga(8);
-        this.tanque4 = new Tanque(45000, "C");
+        //this.tanque4 = new Tanque(45000, "C");
+        /*
+        cambiado para que luego de los 12 minutos quede con una carga de 45000
+        */
+        this.tanque4 = new Tanque(165000, "C");
         this.tanque4.setFinCarga(12);
-        this.tanque5 = new Tanque(25000, "C");
+        // this.tanque5 = new Tanque(25000, "C");
+        /*
+        cambiado para que después de los 3 minutos de la descarga quede con 25000
+        */
+        this.tanque5 = new Tanque(55000, "C");
         this.tanque5.setFinCarga(3.5);
         //ArrayList de tanque para generar el evento que sigue
         this.tanques = new Tanque[5];
@@ -132,6 +140,7 @@ public class GestorSimulacion {
     private void simularEventoFinCarga(Tanque tanque){
         //Nico
         this.reloj = tanque.getFinCarga();
+        System.out.println("CAPACIDAD DEL TANQUE LIBRE ANTES DE SETEO::: " + tanque.getCapacidadLibre());
         
         if (tanque.getCapacidadLibre() == 0) {
             /*
@@ -152,8 +161,9 @@ public class GestorSimulacion {
            
         }
         else {
-            
+            System.out.println("TIEMPO FIN DE CARGA:::  " + tanque.getFinCarga() + "   ---- TIEMPO INICIO DE CARGA::: " + tanque.getInicioCarga());
             double tiempoCargando = tanque.getFinCarga() - tanque.getInicioCarga() - 0.5;
+            System.out.println("TIEMPO QUE CARGO (SIN INCLUIR ENCENDIDO DE BOMBA) :::: " + tiempoCargando);
             double cargaLibre = tanque.getCapacidadLibre() - tiempoCargando*10000.0 ;
             tanque.setCapacidadLibre(cargaLibre);
 
@@ -165,6 +175,7 @@ public class GestorSimulacion {
                 this.simularIngresoPuerto();
                 buqueNuevo.setCargaActual(this.ingresoPuerto.getCargaActual());
                 double finCarga = this.generarFinCarga(tanque, buqueNuevo);
+                tanque.setInicioCarga(this.reloj);
                 tanque.setFinCarga(finCarga);
                 tanque.ponerCargando();
                 tanque.setBuqueEnAtencion(buqueNuevo);
@@ -188,11 +199,14 @@ public class GestorSimulacion {
         double carga;
         if(tanqueLibre.getCapacidadLibre() < buqueNuevo.getCargaActual()){
             carga = tanqueLibre.getCapacidadLibre();
+            System.out.println("CARGA TOMADA DESDE LIMITE DE TANQUE::: " + carga);
         }
         else{
             carga = buqueNuevo.getCargaActual();
+            System.out.println("CARGA TOMADA DESDE CAPACIDAD DE BUQUE:::" + carga);
         }
-        double FinCarga = 0.5 + carga / 10000.0;
+        double FinCarga = (0.5 + carga / 10000.0) + this.reloj;
+        System.out.println("PROXIMO FIN DE CARGA SERÄ EN:: " + FinCarga);
         return Math.round(FinCarga * 100.0) / 100.0;
     }
     
@@ -252,6 +266,8 @@ public class GestorSimulacion {
         //Seteo el vector estado Actual en la posicion 0 del reloj
         this.actualizarVectorEstadoActual();
         while (this.reloj <= this.horaHasta){
+            System.out.println("");
+            System.out.println("");
             System.out.println("simulando, por favor espera :) ");
             //ACA DEBERIA IR TODA LA LOGICA DE LA SIMULACION
             //ACa se deberia buscar cual es el evento siguiente
@@ -260,7 +276,6 @@ public class GestorSimulacion {
             double horaEvento = this.vectorEstadoActual.getProxEventoHora();
             
             for(Tanque i:this.tanques){
-                System.out.println("ENtro al for TANQUESESADRASDFOASDIF WBIEIQBWER");
                 if ( this.llegadaBuque.getProximaLlegada() == horaEvento){
                     System.out.println("Llegada de buque");
                     this.simularEventoLlegadaBuque();
