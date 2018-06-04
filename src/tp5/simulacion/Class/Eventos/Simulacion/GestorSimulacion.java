@@ -41,7 +41,7 @@ public class GestorSimulacion {
     //Vector para poder recorrer los tanques(servidores) (permanentes)
     private Tanque[] tanques;
     //Atributo para alamacenar los vectores estados que se van a mostrar en la tabla
-    private ObservableList<VectorEstado> vectoresEstados;
+    private ObservableList<VectorEstadoView> vectoresEstados;
     //Atributos para saber desde y hasta que fila mostrar
     private double horaDesdeVER;
     private double horaHastaVER;
@@ -106,7 +106,7 @@ public class GestorSimulacion {
     
     private void simularEventoFinDescarga(Tanque tanque){
         //Eze hay que ver si el tanque esta referenciado a un buque, osea, no tiene que pasar uno nuevo, tiene que reanudar la carga
-        
+       
     }
     
     private void simularEventoFinCarga(Tanque tanque){
@@ -155,6 +155,9 @@ public class GestorSimulacion {
             }
         }
         this.actualizarVectorEstadoActual();
+        this.llegadaBuque.setRndLLegadaBuque(-1);
+        this.llegadaBuque.setTiempoLLegadaBuque(-1);
+        
     }
     
     
@@ -184,7 +187,7 @@ public class GestorSimulacion {
     
     private void simularEventoLlegadaBuque() {
         //Seteo del reloj
-        this.reloj = this.vectorEstadoActual.getProximaLllegada();
+        this.reloj = this.vectorEstadoActual.getProximaLlegada();
         
         //EVENTO LLEGADA DEL Proximo buque BUQUE
         this.simularLlegada();
@@ -208,6 +211,8 @@ public class GestorSimulacion {
             tanqueLibre.setBuqueEnAtencion(buqueNuevo);
         }
        this.actualizarVectorEstadoActual();
+       this.llegadaBuque.setRndLLegadaBuque(-1);
+       this.llegadaBuque.setTiempoLLegadaBuque(-1);
     }
     
     public void actualizarVectorEstadoActual(){
@@ -233,7 +238,7 @@ public class GestorSimulacion {
     }
     
     
-    public ObservableList<VectorEstado> simular()
+    public ObservableList<VectorEstadoView> simular()
     {
         //Seteo el vector estado Actual en la posicion 0 del reloj
         this.actualizarVectorEstadoActual();
@@ -265,8 +270,12 @@ public class GestorSimulacion {
                 }
             }          
             //Al final de cada ciclo para almacenar los que se deben mostrar
-            if ( this.reloj <= this.horaDesdeVER && this.reloj >= this.horaHastaVER) {
-                VectorEstado v = this.vectorEstadoActual;
+//            if ( this.reloj >= this.horaDesdeVER && this.reloj<= this.horaHastaVER) {
+//                VectorEstado v = this.vectorEstadoActual;
+//                this.vectoresEstados.add(v);
+//            }
+            if ( this.reloj >= this.horaDesdeVER && this.reloj<= this.horaHastaVER) {
+                VectorEstadoView v = new VectorEstadoView(this.vectorEstadoActual);
                 this.vectoresEstados.add(v);
             }
             

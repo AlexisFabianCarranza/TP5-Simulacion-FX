@@ -179,11 +179,11 @@ public class VectorEstado {
         this.tiempoLlegadaBuque = tiempoLLegadaBuque;
     }
 
-    public double getProximaLllegada() {
+    public double getProximaLlegada() {
         return proximaLlegada;
     }
 
-    public void setProximaLllegada(double proximaLllegada) {
+    public void setProximaLlegada(double proximaLllegada) {
         this.proximaLlegada = proximaLllegada;
     }
 

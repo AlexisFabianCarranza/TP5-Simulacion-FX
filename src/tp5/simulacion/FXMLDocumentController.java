@@ -22,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import tp5.simulacion.Class.Eventos.Simulacion.GestorSimulacion;
 import tp5.simulacion.Class.Eventos.Simulacion.VectorEstado;
+import tp5.simulacion.Class.Eventos.Simulacion.VectorEstadoView;
 
 /**
  *
@@ -45,102 +46,102 @@ public class FXMLDocumentController implements Initializable {
     private double horaHasta;
     
     @FXML
-    private TableColumn<VectorEstado, Double> relojColumn;
+    private TableColumn<VectorEstadoView, String> relojColumn;
     @FXML
-    private TableColumn<VectorEstado, Double> rndLlegadaColumn;
+    private TableColumn<VectorEstadoView, String> rndLlegadaColumn;
     @FXML
-    private TableColumn<VectorEstado, Double> tiempoLlegadaColumn;
+    private TableColumn<VectorEstadoView, String> tiempoLlegadaColumn;
     @FXML
-    private TableColumn<VectorEstado, Double> proximaLlegadaColumn;
+    private TableColumn<VectorEstadoView, String> proximaLlegadaColumn;
     @FXML
-    private TableColumn<VectorEstado, Double> rndCargaColumn;
+    private TableColumn<VectorEstadoView, String> rndCargaColumn;
     @FXML
-    private TableColumn<VectorEstado, Integer> cargaColumn;
+    private TableColumn<VectorEstadoView, String> cargaColumn;
     @FXML
-    private TableColumn<VectorEstado, Double> inicioCargaT1Column;
+    private TableColumn<VectorEstadoView, String> inicioCargaT1Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finCargaT1Column;
+    private TableColumn<VectorEstadoView, String> finCargaT1Column;
     @FXML
-    private TableColumn<VectorEstado, Double> inicioCargaT2Column;
+    private TableColumn<VectorEstadoView, String> inicioCargaT2Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finCargaT2Column;
+    private TableColumn<VectorEstadoView, String> finCargaT2Column;
     @FXML
-    private TableColumn<VectorEstado, Double> inicioCargaT3Column;
+    private TableColumn<VectorEstadoView, String> inicioCargaT3Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finCargaT3Column;
+    private TableColumn<VectorEstadoView, String> finCargaT3Column;
     @FXML
-    private TableColumn<VectorEstado, Double> inicioCargaT4Column;
+    private TableColumn<VectorEstadoView, String> inicioCargaT4Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finCargaT4Column;
+    private TableColumn<VectorEstadoView, String> finCargaT4Column;
     @FXML
-    private TableColumn<VectorEstado, Double> inicioCargaT5Column;
+    private TableColumn<VectorEstadoView, String> inicioCargaT5Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finCargaT5Column;
+    private TableColumn<VectorEstadoView, String> finCargaT5Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finDescargaT1Column;
+    private TableColumn<VectorEstadoView, String> finDescargaT1Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finDescargaT2Column;
+    private TableColumn<VectorEstadoView, String> finDescargaT2Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finDescargaT3Column;
+    private TableColumn<VectorEstadoView, String> finDescargaT3Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finDescargaT4Column;
+    private TableColumn<VectorEstadoView, String> finDescargaT4Column;
     @FXML
-    private TableColumn<VectorEstado, Double> finDescargaT5Column;
+    private TableColumn<VectorEstadoView, String> finDescargaT5Column;
     @FXML
-    private TableColumn<VectorEstado, Integer> colaColumn;
+    private TableColumn<VectorEstadoView, String> colaColumn;
     @FXML
-    private TableColumn<VectorEstado, String> estadoT1Column;
+    private TableColumn<VectorEstadoView, String> estadoT1Column;
     @FXML
-    private TableColumn<VectorEstado, Double> capacidadLibreT1Column;
+    private TableColumn<VectorEstadoView, String> capacidadLibreT1Column;
     @FXML
-    private TableColumn<VectorEstado, String> estadoT2Column;
+    private TableColumn<VectorEstadoView, String> estadoT2Column;
     @FXML
-    private TableColumn<VectorEstado, Double> capacidadLibreT2Column;
+    private TableColumn<VectorEstadoView, String> capacidadLibreT2Column;
     @FXML
-    private TableColumn<VectorEstado, String> estadoT3Column;
+    private TableColumn<VectorEstadoView, String> estadoT3Column;
     @FXML
-    private TableColumn<VectorEstado, Double> capacidadLibreT3Column;
+    private TableColumn<VectorEstadoView, String> capacidadLibreT3Column;
     @FXML
-    private TableColumn<VectorEstado, String> estadoT4Column;
+    private TableColumn<VectorEstadoView, String> estadoT4Column;
     @FXML
-    private TableColumn<VectorEstado, Double> capacidadLibreT4Column;
+    private TableColumn<VectorEstadoView, String> capacidadLibreT4Column;
     @FXML
-    private TableColumn<VectorEstado, String> estadoT5Column;
+    private TableColumn<VectorEstadoView, String> estadoT5Column;
     @FXML
-    private TableColumn<VectorEstado, Double> capacidadLibreT5Column;
+    private TableColumn<VectorEstadoView, String> capacidadLibreT5Column;
     @FXML
-    private TableView<VectorEstado> tableVectorEstado;
+    private TableView<VectorEstadoView> tableVectorEstado;
     @FXML
     private TableColumn<VectorEstado, String> estadoB1Column;
     @FXML
-    private TableColumn<VectorEstado, Double> cargaActualB1Column;
+    private TableColumn<VectorEstadoView, String> cargaActualB1Column;
     @FXML
     private TableColumn<VectorEstado, String> estadoB2Column;
     @FXML
-    private TableColumn<VectorEstado, Double> cargaActualB2Column;
+    private TableColumn<VectorEstadoView, String> cargaActualB2Column;
     @FXML
     private TableColumn<VectorEstado, String> estadoB3Column;
     @FXML
-    private TableColumn<VectorEstado, Double> cargaActualB3Column;
+    private TableColumn<VectorEstadoView, String> cargaActualB3Column;
     @FXML
     private TableColumn<VectorEstado, String> estadoB4Column;
     @FXML
-    private TableColumn<VectorEstado, Double> cargaActualB4Column;
+    private TableColumn<VectorEstadoView, String> cargaActualB4Column;
     @FXML
     private TableColumn<VectorEstado, String> estadoB5Column;
     @FXML
-    private TableColumn<VectorEstado, Double> cargaActualB5Column;
+    private TableColumn<VectorEstadoView, String> cargaActualB5Column;
     
     private GestorSimulacion simulador;
     
-    private ObservableList<VectorEstado> estados;
+    private ObservableList<VectorEstadoView> estados;
    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         this.relojColumn.setCellValueFactory(new PropertyValueFactory<>("reloj"));
-        this.rndLlegadaColumn.setCellValueFactory(new PropertyValueFactory<>("rndLLegadaBuque"));
+        this.rndLlegadaColumn.setCellValueFactory(new PropertyValueFactory<>("rndLlegadaBuque"));
         this.tiempoLlegadaColumn.setCellValueFactory(new PropertyValueFactory("tiempoLlegadaBuque"));
         this.proximaLlegadaColumn.setCellValueFactory(new PropertyValueFactory("proximaLlegada"));
         this.rndCargaColumn.setCellValueFactory(new PropertyValueFactory("rndCarga"));
@@ -220,7 +221,6 @@ public class FXMLDocumentController implements Initializable {
     private void clickBtnSimular(MouseEvent event) {
         
         if (validarDatos()) {
-            System.out.println("entro a simular pendejo :( ");
            simulador = new GestorSimulacion(this.horaDesde, this.horaHasta, this.horasSimulacion);
            this.estados = simulador.simular();
            
