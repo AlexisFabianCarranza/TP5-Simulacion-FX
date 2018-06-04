@@ -98,8 +98,33 @@ public class GestorSimulacion {
     private void simularEventoFinDescarga(Tanque tanque){
         //Eze hay que ver si el tanque esta referenciado a un buque, osea, no tiene que pasar uno nuevo, tiene que reanudar la carga
         this.reloj = tanque.getFinDescarga();
-        
-        
+        tanque.setCapacidadLibre(70000);
+        Buque buqueEnAtencion = tanque.getBuqueEnAtencion();
+        if(buqueEnAtencion.getEstado() == "ER"){
+            double finCarga = this.generarFinCarga(tanque, buqueEnAtencion);
+            buqueEnAtencion.ponerSiendoAtendido();
+            tanque.setInicioCarga(this.reloj);
+            tanque.setFinCarga(finCarga);
+            tanque.ponerCargando();
+        }
+        else{
+            if (this.cola != 0){
+                this.simularIngresoPuerto();
+                Buque buque = new Buque();
+                buque.ponerSiendoAtendido();
+                buque.setCargaActual(this.ingresoPuerto.getCargaActual());
+                this.cola -= 1;
+                double finCarga = this.generarFinCarga(tanque, buque);
+                tanque.setFinCarga(finCarga);
+                tanque.setInicioCarga(this.reloj);
+                tanque.setBuqueEnAtencion(buque);
+                tanque.ponerCargando();
+            }
+            else {
+                tanque.ponerLibre();
+            }
+        }
+        tanque.setFinDescarga(-1);
     }
     
     private void simularEventoFinCarga(Tanque tanque){
@@ -228,6 +253,8 @@ public class GestorSimulacion {
         while (this.reloj <= this.horaHasta){
             //ACA DEBERIA IR TODA LA LOGICA DE LA SIMULACION
             //ACa se deberia buscar cual es el evento siguiente
+            this.ingresoPuerto.setCargaActual(-1);
+            this.ingresoPuerto.setRndContenido(-1);
             double horaEvento = this.vectorEstadoActual.getProxEventoHora();
             if ( this.llegadaBuque.getProximaLllegada() == horaEvento){
                 this.simularEventoLlegadaBuque();
@@ -241,10 +268,11 @@ public class GestorSimulacion {
                 }
             }          
             //Al final de cada ciclo para almacenar los que se deben mostrar
-            //if ( this.filaActual <= this.filaHasta && this.filaActual >= this.filaDesde) {
-            //    VectorEstadoView v = new VectorEstadoView(this.vectorEstadoActual);
-            //    this.vectoresEstados.add(v);
-            //}
+            if ( this.reloj <= this.horaDesdeVER && this.reloj >= this.horaHastaVER) {
+                //VectorEstadoView v = new VectorEstadoView(this.vectorEstadoActual);
+                //this.vectoresEstados.add(v);
+            }
+            
         }
         
         return this.vectoresEstados;

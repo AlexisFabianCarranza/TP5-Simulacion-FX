@@ -50,7 +50,8 @@ public class Tanque {
         this.estado = "L";
         this.finCarga = -1;
         this.finDescarga = -1;
-        this.buqueEnAtencion = null;
+        this.buqueEnAtencion.setCargaActual(-1);
+        this.buqueEnAtencion.setEstado("");
     }
     
     public void ponerDescargando(){
