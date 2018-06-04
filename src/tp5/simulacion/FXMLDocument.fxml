@@ -8,11 +8,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="902.0" prefWidth="1934.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp5.simulacion.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="902.0" prefWidth="1934.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp5.simulacion.FXMLDocumentController">
     <children>
       <ScrollPane layoutX="24.0" layoutY="241.0">
          <content>
-            <TableView prefHeight="508.0" prefWidth="1884.0">
+            <TableView fx:id="tableVectorEstado" prefHeight="508.0" prefWidth="1884.0">
               <columns>
                 <TableColumn fx:id="relojColumn" prefWidth="31.99993896484375" text="Reloj" />
                   <TableColumn editable="false" prefWidth="153.00003051757812" text="Llegada Buque">
@@ -110,32 +110,32 @@
                      <columns>
                         <TableColumn prefWidth="165.0" text="1">
                            <columns>
-                              <TableColumn prefWidth="33.0" text="Est." />
-                              <TableColumn prefWidth="78.0" text="Carga Actual" />
+                              <TableColumn fx:id="estadoB1Column" prefWidth="33.0" text="Est." />
+                              <TableColumn fx:id="cargaActualB1Column" prefWidth="78.0" text="Carga Actual" />
                            </columns>
                         </TableColumn>
                         <TableColumn prefWidth="111.0" text="2">
                            <columns>
-                              <TableColumn prefWidth="28.0" text="Est." />
-                              <TableColumn prefWidth="76.0" text="Carga Actual" />
+                              <TableColumn fx:id="estadoB2Column" prefWidth="28.0" text="Est." />
+                              <TableColumn fx:id="cargaActualB2Column" prefWidth="76.0" text="Carga Actual" />
                            </columns>
                         </TableColumn>
                         <TableColumn prefWidth="111.0" text="3">
                            <columns>
-                              <TableColumn prefWidth="26.0" text="Est." />
-                              <TableColumn prefWidth="77.0" text="Carga Actual" />
+                              <TableColumn fx:id="estadoB3Column" prefWidth="26.0" text="Est." />
+                              <TableColumn fx:id="cargaActualB3Column" prefWidth="77.0" text="Carga Actual" />
                            </columns>
                         </TableColumn>
                         <TableColumn prefWidth="111.0" text="4">
                            <columns>
-                              <TableColumn prefWidth="25.0" text="Est." />
-                              <TableColumn prefWidth="78.0" text="Carga Actual" />
+                              <TableColumn fx:id="estadoB4Column" prefWidth="25.0" text="Est." />
+                              <TableColumn fx:id="cargaActualB4Column" prefWidth="78.0" text="Carga Actual" />
                            </columns>
                         </TableColumn>
                         <TableColumn prefWidth="111.0" text="5">
                            <columns>
-                              <TableColumn prefWidth="25.0" text="Est." />
-                              <TableColumn prefWidth="92.0" text="Carga Actual" />
+                              <TableColumn fx:id="estadoB5Column" prefWidth="25.0" text="Est." />
+                              <TableColumn fx:id="cargaActualB5Column" prefWidth="92.0" text="Carga Actual" />
                            </columns>
                         </TableColumn>
                      </columns>
@@ -149,7 +149,7 @@
       </ScrollPane>
       <TextField fx:id="txtHorasSimulacion" layoutX="584.0" layoutY="72.0" text="1000" />
       <Label layoutX="368.0" layoutY="77.0" text="Cantidad de horas a simular:" />
-      <Button fx:id="btnSimular" layoutX="1158.0" layoutY="72.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="157.0" text="Simular" />
+      <Button fx:id="btnSimular" layoutX="1158.0" layoutY="72.0" mnemonicParsing="false" onMouseClicked="#clickBtnSimular" prefHeight="66.0" prefWidth="157.0" text="Simular" />
       <Label layoutX="366.0" layoutY="112.0" text="Mostrar filas " />
       <Label layoutX="368.0" layoutY="147.0" text="Desde hora:" />
       <Label layoutX="617.0" layoutY="147.0" text="Hasta hora:" />
