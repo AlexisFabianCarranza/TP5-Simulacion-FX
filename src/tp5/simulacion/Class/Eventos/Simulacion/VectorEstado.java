@@ -16,9 +16,9 @@ public class VectorEstado {
     /*
     llegada de buque
     */
-    private double rndLLegadaBuque;
-    private double tiempoLLegadaBuque;
-    private double proximaLllegada;
+    private double rndLlegadaBuque;
+    private double tiempoLlegadaBuque;
+    private double proximaLlegada;
     
     /*
     ingreso a puerto
@@ -71,9 +71,9 @@ public class VectorEstado {
             double cargaActualB1, double cargaActualB2, double cargaActualB3, double cargaActualB4, double cargaActualB5,
             String estadoB1, String estadoB2, String estadoB3, String estadoB4, String estadoB5, int cola) {
         this.reloj = reloj;
-        this.rndLLegadaBuque = rndLlegada;
-        this.tiempoLLegadaBuque = tiempoLlegada;
-        this.proximaLllegada = proxLlegada;
+        this.rndLlegadaBuque = rndLlegada;
+        this.tiempoLlegadaBuque = tiempoLlegada;
+        this.proximaLlegada = proxLlegada;
         this.rndCarga = rndCarga;
         this.cargaBuque = cargaBuque;
         this.tiempoInicioCargaT1 = inicioT1;
@@ -117,7 +117,7 @@ public class VectorEstado {
     public double getProxEventoHora(){
         
         this.eventos = new double[11];
-        this.eventos[0] = this.proximaLllegada;
+        this.eventos[0] = this.proximaLlegada;
         this.eventos[2] = this.tiempoFinCargaT1;
         this.eventos[3] = this.tiempoFinCargaT2;
         this.eventos[4] = this.tiempoFinCargaT3;
@@ -144,28 +144,28 @@ public class VectorEstado {
         this.reloj = reloj;
     }
 
-    public double getRndLLegadaBuque() {
-        return rndLLegadaBuque;
+    public double getRndLlegadaBuque() {
+        return rndLlegadaBuque;
     }
 
-    public void setRndLLegadaBuque(double rndLLegadaBuque) {
-        this.rndLLegadaBuque = rndLLegadaBuque;
+    public void setRndLlegadaBuque(double rndLLegadaBuque) {
+        this.rndLlegadaBuque = rndLLegadaBuque;
     }
 
-    public double getTiempoLLegadaBuque() {
-        return tiempoLLegadaBuque;
+    public double getTiempoLlegadaBuque() {
+        return tiempoLlegadaBuque;
     }
 
-    public void setTiempoLLegadaBuque(double tiempoLLegadaBuque) {
-        this.tiempoLLegadaBuque = tiempoLLegadaBuque;
+    public void setTiempoLlegadaBuque(double tiempoLLegadaBuque) {
+        this.tiempoLlegadaBuque = tiempoLLegadaBuque;
     }
 
     public double getProximaLllegada() {
-        return proximaLllegada;
+        return proximaLlegada;
     }
 
     public void setProximaLllegada(double proximaLllegada) {
-        this.proximaLllegada = proximaLllegada;
+        this.proximaLlegada = proximaLllegada;
     }
 
     public double getRndCarga() {

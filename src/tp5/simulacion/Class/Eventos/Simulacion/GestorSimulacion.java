@@ -41,7 +41,7 @@ public class GestorSimulacion {
     //Vector para poder recorrer los tanques(servidores) (permanentes)
     private Tanque[] tanques;
     //Atributo para alamacenar los vectores estados que se van a mostrar en la tabla
-    private ObservableList<VectorEstadoView> vectoresEstados;
+    private ObservableList<VectorEstado> vectoresEstados;
     //Atributos para saber desde y hasta que fila mostrar
     private double horaDesdeVER;
     private double horaHastaVER;
@@ -220,7 +220,7 @@ public class GestorSimulacion {
     }
     
     
-    public ObservableList<VectorEstadoView> simular()
+    public ObservableList<VectorEstado> simular()
     {
         //Seteo el vector estado Actual en la posicion 0 del reloj
        
