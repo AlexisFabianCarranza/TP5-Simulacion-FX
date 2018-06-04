@@ -233,7 +233,7 @@ public class GestorSimulacion {
         Buque b4 = this.tanque4.getBuqueEnAtencion();
         Buque b5 = this.tanque5.getBuqueEnAtencion();
         this.vectorEstadoActual = new VectorEstado(this.reloj, this.llegadaBuque.getRndLLegadaBuque(), 
-               this.llegadaBuque.getTiempoLLegadaBuque(),this.llegadaBuque.getProximaLllegada(),
+               this.llegadaBuque.getTiempoLLegadaBuque(),this.llegadaBuque.getProximaLlegada(),
                this.ingresoPuerto.getRndContenido() , this.ingresoPuerto.getCargaActual(), 
                this.tanque1.getInicioCarga(), this.tanque1.getFinCarga(), this.tanque1.getFinDescarga(), this.tanque1.getCapacidadLibre(), this.tanque1.getEstado(),
                this.tanque2.getInicioCarga(), this.tanque2.getFinCarga(), this.tanque2.getFinDescarga(), this.tanque2.getCapacidadLibre(), this.tanque2.getEstado(),
@@ -250,8 +250,7 @@ public class GestorSimulacion {
     public ObservableList<VectorEstado> simular()
     {
         //Seteo el vector estado Actual en la posicion 0 del reloj
-       
-        
+        this.actualizarVectorEstadoActual();
         while (this.reloj <= this.horaHasta){
             System.out.println("simulando, por favor espera :) ");
             //ACA DEBERIA IR TODA LA LOGICA DE LA SIMULACION
@@ -259,15 +258,23 @@ public class GestorSimulacion {
             this.ingresoPuerto.setCargaActual(-1);
             this.ingresoPuerto.setRndContenido(-1);
             double horaEvento = this.vectorEstadoActual.getProxEventoHora();
-            if ( this.llegadaBuque.getProximaLllegada() == horaEvento){
-                this.simularEventoLlegadaBuque();
-            }
+            
             for(Tanque i:this.tanques){
+                System.out.println("ENtro al for TANQUESESADRASDFOASDIF WBIEIQBWER");
+                if ( this.llegadaBuque.getProximaLlegada() == horaEvento){
+                    System.out.println("Llegada de buque");
+                    this.simularEventoLlegadaBuque();
+                    break;
+                }
                 if(i.getFinCarga() == horaEvento){
+                    System.out.println("finCarga");
                     this.simularEventoFinCarga(i);
+                    break;
                 }
                 if(i.getFinDescarga() == horaEvento){
+                    System.out.println("FinDescarga");
                     this.simularEventoFinDescarga(i);
+                    break;
                 }
             }          
             //Al final de cada ciclo para almacenar los que se deben mostrar

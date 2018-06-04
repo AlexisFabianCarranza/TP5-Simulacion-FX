@@ -61,6 +61,8 @@ public class VectorEstado {
      
     //Vector que ayuda para ver cual es el proximo evento
     private double[] eventos;
+    
+    
     public VectorEstado(double reloj, double rndLlegada, double tiempoLlegada, double proxLlegada,
             double rndCarga, double cargaBuque,
             double inicioT1, double finT1, double finDescargaT1, double capacidadT1, String estadoT1,
@@ -118,22 +120,23 @@ public class VectorEstado {
         
         this.eventos = new double[11];
         this.eventos[0] = this.proximaLlegada;
-        this.eventos[2] = this.tiempoFinCargaT1;
-        this.eventos[3] = this.tiempoFinCargaT2;
-        this.eventos[4] = this.tiempoFinCargaT3;
-        this.eventos[5] = this.tiempoFinCargaT4;
-        this.eventos[6] = this.tiempoFinCargaT5;
-        this.eventos[7] = this.tiempoFinDescargaT1;
-        this.eventos[8] = this.tiempoFinDescargaT2;
-        this.eventos[9] = this.tiempoFinDescargaT3;
-        this.eventos[10] = this.tiempoFinDescargaT4;
-        this.eventos[11] = this.tiempoFinDescargaT5;
-        double menor = this.eventos[0];
+        this.eventos[1] = this.tiempoFinCargaT1;
+        this.eventos[2] = this.tiempoFinCargaT2;
+        this.eventos[3] = this.tiempoFinCargaT3;
+        this.eventos[4] = this.tiempoFinCargaT4;
+        this.eventos[5] = this.tiempoFinCargaT5;
+        this.eventos[6] = this.tiempoFinDescargaT1;
+        this.eventos[7] = this.tiempoFinDescargaT2;
+        this.eventos[8] = this.tiempoFinDescargaT3;
+        this.eventos[9] = this.tiempoFinDescargaT4;
+        this.eventos[10] = this.tiempoFinDescargaT5;
+        double menor = this.proximaLlegada;
         for ( int i = 1; i< eventos.length ; i++){
-            if ( i < menor ){
+            if ( i < menor && i >= 0 ){
                 menor = i;
             } 
         }
+        System.out.println("EL menor es : "+ menor);
         return menor;
     }
     public double getReloj() {

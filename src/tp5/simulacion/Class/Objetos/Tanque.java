@@ -34,6 +34,7 @@ public class Tanque {
         this.capacidadLibre = capacidadLibre;
         this.finCarga = -1;
         this.finDescarga = -1;
+        this.buqueEnAtencion = new Buque(-1,"");
     }
     
     public void hundirBuque(){

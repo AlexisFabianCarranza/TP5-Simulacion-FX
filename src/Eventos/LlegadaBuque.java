@@ -41,7 +41,7 @@ public class LlegadaBuque {
         return tiempoLLegadaBuque;
     }
 
-    public double getProximaLllegada() {
+    public double getProximaLlegada() {
         return proximaLllegada;
     }
 
