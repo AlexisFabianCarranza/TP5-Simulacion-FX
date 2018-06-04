@@ -50,6 +50,7 @@ public class GestorSimulacion {
     //Atributo que se utiliza para contar las filas, para poder mostrar luego
     
     public GestorSimulacion(double desde , double hasta, double horaHasta) {
+        System.out.println("se esta inicializando la wea");
         this.rnd = new Random();
         this.vectoresEstados = FXCollections.observableArrayList();
         this.horaHasta = horaHasta;
@@ -125,6 +126,7 @@ public class GestorSimulacion {
             }
         }
         tanque.setFinDescarga(-1);
+        this.actualizarVectorEstadoActual();
     }
     
     private void simularEventoFinCarga(Tanque tanque){
@@ -251,6 +253,7 @@ public class GestorSimulacion {
        
         
         while (this.reloj <= this.horaHasta){
+            System.out.println("simulando, por favor espera :) ");
             //ACA DEBERIA IR TODA LA LOGICA DE LA SIMULACION
             //ACa se deberia buscar cual es el evento siguiente
             this.ingresoPuerto.setCargaActual(-1);
@@ -269,8 +272,8 @@ public class GestorSimulacion {
             }          
             //Al final de cada ciclo para almacenar los que se deben mostrar
             if ( this.reloj <= this.horaDesdeVER && this.reloj >= this.horaHastaVER) {
-                //VectorEstadoView v = new VectorEstadoView(this.vectorEstadoActual);
-                //this.vectoresEstados.add(v);
+                VectorEstado v = this.vectorEstadoActual;
+                this.vectoresEstados.add(v);
             }
             
         }

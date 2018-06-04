@@ -8,6 +8,7 @@ package tp5.simulacion;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,8 +39,11 @@ public class FXMLDocumentController implements Initializable {
     private TextField txtHoraHasta;
     
     private double horasSimulacion;
+    
     private double horaDesde;
+    
     private double horaHasta;
+    
     @FXML
     private TableColumn<VectorEstado, Double> relojColumn;
     @FXML
@@ -128,6 +132,8 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<VectorEstado, Double> cargaActualB5Column;
     
     private GestorSimulacion simulador;
+    
+    private ObservableList<VectorEstado> estados;
    
     
     @Override
@@ -214,10 +220,15 @@ public class FXMLDocumentController implements Initializable {
     private void clickBtnSimular(MouseEvent event) {
         
         if (validarDatos()) {
+            System.out.println("entro a simular pendejo :( ");
            simulador = new GestorSimulacion(this.horaDesde, this.horaHasta, this.horasSimulacion);
-            
-            
-            
+           this.estados = simulador.simular();
+           
+           tableVectorEstado.setItems(estados);
+           Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+           dialog.setTitle("Éxito");
+           dialog.setHeaderText("Simulacion");
+           dialog.showAndWait();
         }
                 
         
