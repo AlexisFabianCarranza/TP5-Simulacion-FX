@@ -23,7 +23,8 @@ public class LlegadaBuque {
     private Exponencial exp;
     //metodo mas importante.........................
     public double generarTiempoLlegada(double rnd){
-        return (double) exp.generarNumero(rnd);
+        double tiempo = (double) exp.generarNumero(rnd);
+        return tiempo;
     }
     
     public LlegadaBuque() {

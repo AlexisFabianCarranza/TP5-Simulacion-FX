@@ -72,11 +72,13 @@ public class VectorEstadoView {
         
         if (v.getRndLlegadaBuque() <= 0.0){
             this.rndLlegadaBuque = "";
-            this.rndLlegadaBuque = "";
+            //this.rndLlegadaBuque = "";
+            this.tiempoLlegadaBuque = "";
         }
         else{
             this.rndLlegadaBuque = String.valueOf(v.getRndLlegadaBuque());
-            this.rndLlegadaBuque = String.valueOf(v.getTiempoLlegadaBuque());
+            //this.rndLlegadaBuque = String.valueOf(v.getTiempoLlegadaBuque());
+            this.tiempoLlegadaBuque = String.valueOf(v.getTiempoLlegadaBuque());
         }
         
         this.proximaLlegada = String.valueOf(v.getProximaLlegada());
@@ -90,7 +92,7 @@ public class VectorEstadoView {
             this.cargaBuque = String.valueOf(v.getCargaBuque());
         }
         
-        if (v.getTiempoInicioCargaT1() <= 0.0) {
+        if (v.getTiempoInicioCargaT1() < 0.0) {
             this.tiempoInicioCargaT1 = "";
             this.tiempoFinCargaT1 = "";
         }
@@ -99,7 +101,7 @@ public class VectorEstadoView {
             this.tiempoFinCargaT1 = String.valueOf(v.getTiempoFinCargaT1());
         }
         
-        if (v.getTiempoInicioCargaT2() <= 0.0) {
+        if (v.getTiempoInicioCargaT2() < 0.0) {
             this.tiempoInicioCargaT2 = "";
             this.tiempoFinCargaT2 = "";
         }
@@ -108,7 +110,7 @@ public class VectorEstadoView {
             this.tiempoFinCargaT2 = String.valueOf(v.getTiempoFinCargaT2());
         }
         
-        if (v.getTiempoInicioCargaT3() <= 0.0) {
+        if (v.getTiempoInicioCargaT3() < 0.0) {
             this.tiempoInicioCargaT3 = "";
             this.tiempoFinCargaT3 = "";
         }
@@ -117,7 +119,7 @@ public class VectorEstadoView {
             this.tiempoFinCargaT3 = String.valueOf(v.getTiempoFinCargaT3());
         }
         
-        if (v.getTiempoInicioCargaT4() <= 0.0) {
+        if (v.getTiempoInicioCargaT4() < 0.0) {
             this.tiempoInicioCargaT4 = "";
             this.tiempoFinCargaT4 = "";
         }
@@ -126,7 +128,7 @@ public class VectorEstadoView {
             this.tiempoFinCargaT4 = String.valueOf(v.getTiempoFinCargaT4());
         }
         
-        if (v.getTiempoInicioCargaT5() <= 0.0) {
+        if (v.getTiempoInicioCargaT5() < 0.0) {
             this.tiempoInicioCargaT5 = "";
             this.tiempoFinCargaT5 = "";
         }

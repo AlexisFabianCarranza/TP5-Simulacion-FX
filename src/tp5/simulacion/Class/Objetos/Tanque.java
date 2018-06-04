@@ -25,6 +25,7 @@ public class Tanque {
     public Tanque() {
         this.estado = "L";
         this.capacidadLibre = 70000;
+        this.inicioCarga = -1;
         this.finCarga = -1;
         this.finDescarga = -1;
     }
@@ -34,6 +35,7 @@ public class Tanque {
         this.capacidadLibre = capacidadLibre;
         this.finCarga = -1;
         this.finDescarga = -1;
+        this.inicioCarga = -1;
         this.buqueEnAtencion = new Buque(-1,"");
     }
     

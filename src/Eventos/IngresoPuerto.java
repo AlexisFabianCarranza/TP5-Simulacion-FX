@@ -19,13 +19,13 @@ public class IngresoPuerto {
     }
     
     public double generarCarga(double rnd){
-        if (this.rndContenido <= 0.33){
+        if (rnd <= 0.33){
             return 15000.0;
         }
-        if(this.rndContenido <= 0.66){
+        if(rnd <= 0.66){
             return 20000.0;
         }
-        if(this.rndContenido <= 0.99){
+        if(rnd <= 0.99){
             return 25000.0;
         }
         return 0;

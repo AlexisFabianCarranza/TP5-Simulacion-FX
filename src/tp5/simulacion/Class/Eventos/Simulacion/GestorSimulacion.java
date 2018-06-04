@@ -72,12 +72,14 @@ public class GestorSimulacion {
         */
         this.tanque4 = new Tanque(165000, "C");
         this.tanque4.setFinCarga(12);
+        this.tanque4.setInicioCarga(0);
         // this.tanque5 = new Tanque(25000, "C");
         /*
         cambiado para que después de los 3 minutos de la descarga quede con 25000
         */
         this.tanque5 = new Tanque(55000, "C");
         this.tanque5.setFinCarga(3.5);
+        this.tanque5.setInicioCarga(0);
         //ArrayList de tanque para generar el evento que sigue
         this.tanques = new Tanque[5];
         this.tanques[0] = tanque1;
@@ -92,21 +94,21 @@ public class GestorSimulacion {
         double rndLlegada = this.rnd.nextDouble();
         double tiempoLlegada = this.llegadaBuque.generarTiempoLlegada(rndLlegada);
         double proximaLlegada = this.reloj + tiempoLlegada;
-        this.llegadaBuque.setProximaLllegada(proximaLlegada);
-        this.llegadaBuque.setRndLLegadaBuque(rndLlegada);
-        this.llegadaBuque.setTiempoLLegadaBuque(tiempoLlegada);
+        this.llegadaBuque.setProximaLllegada(Math.round(proximaLlegada*100.0)/100.0);
+        this.llegadaBuque.setRndLLegadaBuque(Math.round(rndLlegada*100.0)/100.0);
+        this.llegadaBuque.setTiempoLLegadaBuque(Math.round(tiempoLlegada*100.0)/100.0);
     }
     //Metodo separado, ya que en todos los casos son iguales
     private void simularIngresoPuerto(){
         double rndContenidoBuque = this.rnd.nextDouble();
         double cargaBuque = this.ingresoPuerto.generarCarga(rndContenidoBuque);
         this.ingresoPuerto.setCargaActual(cargaBuque);
-        this.ingresoPuerto.setRndContenido(rndContenidoBuque);
+        this.ingresoPuerto.setRndContenido(Math.round(rndContenidoBuque*100.0)/100.0);
     }
     
     private void simularEventoFinDescarga(Tanque tanque){
         //Eze hay que ver si el tanque esta referenciado a un buque, osea, no tiene que pasar uno nuevo, tiene que reanudar la carga
-       
+        
     }
     
     private void simularEventoFinCarga(Tanque tanque){
@@ -191,7 +193,10 @@ public class GestorSimulacion {
         
         //EVENTO LLEGADA DEL Proximo buque BUQUE
         this.simularLlegada();
-        
+        System.out.println("RNDLlegada: " + this.llegadaBuque.getRndLLegadaBuque());
+        System.out.println("Tiempo : " + this.llegadaBuque.getTiempoLLegadaBuque());
+        System.out.println("Prox: " + this.llegadaBuque.getProximaLlegada());
+         
         //EVENTO Ingreso Buque ; PRimero me fijo si hay tanque libre
         Tanque tanqueLibre = this.getTanqueLibre();
         if (tanqueLibre == null) {
@@ -243,9 +248,9 @@ public class GestorSimulacion {
         //Seteo el vector estado Actual en la posicion 0 del reloj
         this.actualizarVectorEstadoActual();
         while (this.reloj <= this.horaHasta){
-            System.out.println("");
-            System.out.println("");
-            System.out.println("simulando, por favor espera :) ");
+//            System.out.println("");
+//            System.out.println("");
+//            System.out.println("simulando, por favor espera :) ");
             //ACA DEBERIA IR TODA LA LOGICA DE LA SIMULACION
             //ACa se deberia buscar cual es el evento siguiente
             this.ingresoPuerto.setCargaActual(-1);
@@ -254,17 +259,17 @@ public class GestorSimulacion {
             
             for(Tanque i:this.tanques){
                 if ( this.llegadaBuque.getProximaLlegada() == horaEvento){
-                    System.out.println("Llegada de buque");
+                    System.out.println("Llegada de buque*********");
                     this.simularEventoLlegadaBuque();
                     break;
                 }
                 if(i.getFinCarga() == horaEvento){
-                    System.out.println("finCarga");
+                    System.out.println("FinCarga-**************");
                     this.simularEventoFinCarga(i);
                     break;
                 }
                 if(i.getFinDescarga() == horaEvento){
-                    System.out.println("FinDescarga");
+                    System.out.println("FinDescarga-*************");
                     this.simularEventoFinDescarga(i);
                     break;
                 }
