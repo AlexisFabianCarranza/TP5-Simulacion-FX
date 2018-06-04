@@ -213,7 +213,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void clickBtnSimular(MouseEvent event) {
         
-        if validarDatos() {
+        if (validarDatos()) {
            simulador = new GestorSimulacion(this.horaDesde, this.horaHasta, this.horasSimulacion);
             
             
