@@ -98,35 +98,7 @@ public class GestorSimulacion {
     
     private void simularEventoFinDescarga(Tanque tanque){
         //Eze hay que ver si el tanque esta referenciado a un buque, osea, no tiene que pasar uno nuevo, tiene que reanudar la carga
-        this.reloj = tanque.getFinDescarga();
-        tanque.setCapacidadLibre(70000);
-        Buque buqueEnAtencion = tanque.getBuqueEnAtencion();
-        if(buqueEnAtencion.getEstado() == "ER"){
-            double finCarga = this.generarFinCarga(tanque, buqueEnAtencion);
-            buqueEnAtencion.ponerSiendoAtendido();
-            tanque.setInicioCarga(this.reloj);
-            tanque.setFinCarga(finCarga);
-            tanque.ponerCargando();
-        }
-        else{
-            if (this.cola != 0){
-                this.simularIngresoPuerto();
-                Buque buque = new Buque();
-                buque.ponerSiendoAtendido();
-                buque.setCargaActual(this.ingresoPuerto.getCargaActual());
-                this.cola -= 1;
-                double finCarga = this.generarFinCarga(tanque, buque);
-                tanque.setFinCarga(finCarga);
-                tanque.setInicioCarga(this.reloj);
-                tanque.setBuqueEnAtencion(buque);
-                tanque.ponerCargando();
-            }
-            else {
-                tanque.ponerLibre();
-            }
-        }
-        tanque.setFinDescarga(-1);
-        this.actualizarVectorEstadoActual();
+        
     }
     
     private void simularEventoFinCarga(Tanque tanque){
