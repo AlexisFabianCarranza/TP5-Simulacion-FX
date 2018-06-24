@@ -144,6 +144,7 @@ public class GestorSimulacion {
         //Nico
         this.reloj = tanque.getFinCarga();
         double tiempoCargando = tanque.getFinCarga() - tanque.getInicioCarga() - 0.5;
+        tiempoCargando = Math.round(tiempoCargando *100.0) /100.0;
         double cargaLibre = tanque.getCapacidadLibre() - tiempoCargando*10000.0 ;
         tanque.setCapacidadLibre(cargaLibre);
         
